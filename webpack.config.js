@@ -1,16 +1,18 @@
 // Only one entry point
 const path = require('path')
 const webpackMerge = require('webpack-merge')
+const { StatsWriterPlugin } = require('webpack-stats-plugin')
 
 const dev = require('./webpack.dev')
 const production = require('./webpack.production')
 
 const { NODE_ENV } = process.env
 
-const baseConfig = (env, config) => {
+const baseConfig = (env, envConfig) => {
   const estaticoFilename = NODE_ENV === 'production' ? 'builder' : 'dev'
-  const conf = {
+  const config = {
     mode: NODE_ENV || 'development',
+    devtool: 'source-maps',
     entry: {
       bundle: path.resolve(__dirname, 'src', estaticoFilename),
       vendor: ['react', 'react-dom', '@reach/router']
@@ -30,10 +32,13 @@ const baseConfig = (env, config) => {
           exclude: /node_modules/
         }
       ]
-    }
+    },
+    plugins: [
+      new StatsWriterPlugin()
+    ]
   }
 
-  return webpackMerge(conf, config)
+  return webpackMerge(envConfig, config)
 }
 
 module.exports = (env, argv) => {

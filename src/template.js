@@ -1,4 +1,4 @@
-export default string => `
+export default (string, routes) => `
   <!DOCTYPE html>
   <html lang="es" dir="ltr">
     <head>
@@ -11,6 +11,7 @@ export default string => `
       </div>
       <script defer src='/vendor.js'></script>
       <script defer src='/bundle.js'></script>
+      <script>window.ESTATICO_PAGES=${JSON.stringify(routes)}</script>
     </body>
   </html>
 `

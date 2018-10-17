@@ -1,39 +1,13 @@
 import React from 'react'
-import { hydrate } from 'react-dom'
 import { renderToString } from 'react-dom/server'
-import { Link, Router } from '@reach/router'
-
-import render from './render'
-import Test from './pages/hello'
+import Loadable from 'react-loadable'
+import template from './template'
+import Layout from '../src' // This folder
 // 1. Get Pages
 // 2. Make routes according to filename
 
-const Layout = ({ children, pages }) => (
-  <React.Fragment>
-    <header>
-      <nav>
-        <Router>
-          {Array.isArray(pages) && pages.map(({ path, Page }) => <Page path={path} />)}
-        </Router>
-        <Link to='/'>Home</Link>
-        <Link to='hello'>Hello</Link>
-        <Link to='world'>World</Link>
-      </nav>
-    </header>
-    {children}
-  </React.Fragment>
-)
-
-if (typeof global.document !== 'undefined') {
-  console.log('YEAHHHHH!!!!')
-  const estaticoRoot = document.getElementById('__estatico')
-  hydrate(
-    <Layout />,
-    estaticoRoot
-  )
-}
-
 export default function(locals) {
+  const assets = Object.keys(locals.webpackStats.compilation.assets)
   const staticApp = {}
   const { routes } = locals
   const Pages = Object.keys(routes).map(P => ({
@@ -49,5 +23,5 @@ export default function(locals) {
   )
 
   const appString = renderToString(<App />)
-  return render(appString)
+  return template(appString, Pages)
 }
