@@ -5,6 +5,7 @@ const { env } = process;
 let PORT = env.NODE_ENV === 'production' ? 3002 : 3000
 PORT = env.PORT || PORT
 
+// app.enable('strict routing')
 app.use(express.static(path.resolve(__dirname, 'dist')))
 
 app.listen(PORT, () => console.log('App listening in localhost:' + PORT))

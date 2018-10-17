@@ -1,0 +1,7 @@
+{
+  "publicPath": "/",
+  "publicDir": "dist",
+  "publicStaticPath": "/",
+  "publicStaticDir": "dist",
+  "manifestFileName": "estatico-assets-manifest.json"
+}

@@ -1,11 +1,13 @@
 {
+  "comments": true,
   "presets": [
+    "@babel/preset-react",
     ["@babel/preset-env", {
       "modules": "umd"
-      }],
-    "@babel/preset-react"
+    }]
   ],
   "plugins": [
+    "universal-import",
     "@babel/plugin-syntax-dynamic-import"
   ]
 }

@@ -11,28 +11,36 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@reach/router": "^1.2.1",
+    "axios": "^0.18.0",
     "babel-loader": "^8.0.4",
+    "babel-plugin-universal-import": "^3.1.2",
     "copy-webpack-plugin": "^4.5.3",
     "create-file-webpack": "^1.0.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
+    "kebab-hash": "^0.1.2",
+    "md5": "^2.2.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-loadable": "^5.5.0",
+    "react-universal-component": "^3.0.3",
     "rimraf": "^2.6.2",
     "static-site-generator-webpack-plugin": "medialaan/static-site-generator-webpack-plugin#58524c0",
+    "terser-webpack-plugin": "^1.1.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9",
+    "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.1.4",
     "webpack-stats-plugin": "^0.2.1"
   },
+  "dependencies": {},
   "scripts": {
-    "build": "yarn clean && cross-env NODE_ENV=production webpack --mode production",
+    "estatico": "yarn build && yarn serve",
+    "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",
-    "clean": "rimraf dist"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "react-loadable": "^5.5.0"
+    "clean": "rimraf dist",
+    "build:client": "cross-env NODE_ENV=production webpack --mode production --colors --config estatico.clientSide.js",
+    "build:estatico": "cross-env NODE_ENV=production webpack --mode production"
   }
 }

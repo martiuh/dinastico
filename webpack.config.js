@@ -8,19 +8,16 @@ const production = require('./webpack.production')
 
 const { NODE_ENV } = process.env
 
+const isDev = NODE_ENV === 'development'
 const baseConfig = (env, envConfig) => {
-  const estaticoFilename = NODE_ENV === 'production' ? 'builder' : 'dev'
+  const estaticoFilename = isDev ? 'dev' : 'build'
   const config = {
     mode: NODE_ENV || 'development',
     devtool: 'source-maps',
-    entry: {
-      bundle: path.resolve(__dirname, 'src', estaticoFilename),
-      vendor: ['react', 'react-dom', '@reach/router']
-    },
+    entry: path.resolve(__dirname, 'src', estaticoFilename),
     output: {
-      filename: '[name].js',
+      filename: 'trash.js',
       path: path.join(__dirname, 'dist'),
-      chunkFilename: '[name].[chunkhash].bundle.js',
       libraryTarget: 'umd',
       globalObject: 'this'
     },
@@ -34,7 +31,7 @@ const baseConfig = (env, envConfig) => {
       ]
     },
     plugins: [
-      new StatsWriterPlugin()
+      // new StatsWriterPlugin()
     ]
   }
 
