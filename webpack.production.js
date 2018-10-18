@@ -83,6 +83,7 @@
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const config = require('./engine/config')
 const { addAsset, getManifest } = require('./engine/assets')
@@ -106,6 +107,27 @@ module.exports = {
       }
     ]
   },
+    optimization: {
+      // splitChunks: {
+      //   cacheGroups: {
+      //     vendor: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: 'vendor',
+      //       chunks: 'all'
+      //     }
+      //   }
+      // },
+      // runtimeChunk: 'single',
+      // minimizer: [new TerserPlugin({
+      //   sourceMap: true,
+      //   terserOptions: {
+      //     mangle: {
+      //       properties: /(^_|_$)/
+      //     },
+      //     safari10: true
+      //   }
+      // })]
+    },
   plugins: [
     new ManifestPlugin({
       fileName: config.manifestFileName,

@@ -1,4 +1,5 @@
 import React from 'react'
+import Layout from '../component/Layout'
 
 export default class Hello extends React.Component {
   constructor(props) {
@@ -9,9 +10,11 @@ export default class Hello extends React.Component {
   }
   render() {
     return (
-      <main style={{ width: '100vw', backgroundColor: 'red' }}>        
-        <h1>hola a todos {this.state.nombre}</h1>
-      </main>
+      <Layout>
+        <main style={{ width: '100vw', backgroundColor: 'red' }}>
+          <h1>hola a todos {this.state.nombre}</h1>
+        </main>
+      </Layout>
     )
   }
 }

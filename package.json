@@ -38,7 +38,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config estatico.dev.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
     "prod": "yarn build && yarn serve",
     "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",

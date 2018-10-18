@@ -1,9 +1,10 @@
+// This is only used in the client-side
 import React from 'react'
 import { hydrate } from 'react-dom'
-import Layout from './Layout'
+import EstaticoRoutes from './EstaticoRoutes'
 
 const estaticoRoot = document.getElementById('__estatico')
 hydrate(
-  <Layout />,
+  <EstaticoRoutes />,
   estaticoRoot
 )

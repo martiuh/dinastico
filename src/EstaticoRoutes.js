@@ -7,19 +7,20 @@ import Loadable from 'react-loadable'
 
 import { isServer } from './utils'
 
-const Loading = () => <h1>Loading</h1>
-const ErrorComponent = () => <h1>Error</h1>
+const Loading = () => <h1>...</h1>
+const ErrorComponent = () => <h1>Error :(</h1>
 
-const UniversalComponent = universal(props => import(`${__dirname}/./pages/${props.page}`), {
-  loading: Loading,
-  error: ErrorComponent
-})
-
-const RucIndex = universal(props => import(`${__dirname}/./pages/index`), {
+const universalOpts = {
   loading: Loading,
   error: ErrorComponent,
   minDelay: 500
-})
+}
+
+const pagesFolder = pge => `${__dirname}/./pages/${pge}`
+
+const UniversalComponent = universal(({ page }) => import(`${__dirname}/./pages/${page}`), universalOpts)
+
+const RucIndex = universal(props => import(`${__dirname}/./pages/index`), universalOpts)
 
 const HomeAsync = () => <RucIndex />
 const HelloAsync = () => <UniversalComponent page='hello' />
@@ -36,14 +37,6 @@ export default function Layout({ pages }) {
 
   return (
     <React.Fragment>
-      <header>
-        <nav>
-          <Link to='/'>Home</Link>
-          <Link to='hello'>Hello</Link>
-          <Link to='world'>World</Link>
-        </nav>
-      </header>
-      <h1>Estatico</h1>
       <EstaticoRouter />
     </React.Fragment>
   )

@@ -1,1 +1,4 @@
-- Allow the app folder to export Routes as children, after that build a folder inside the same folder in order to allow url parameters
+- Add React Router
+- Add a vendor.js
+- Programatically build a Router from src/pages folder
+- Support page folder to export Routes as children, after that build a folder inside the parent directory in order to allow url parameters
