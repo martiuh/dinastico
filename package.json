@@ -1,6 +1,6 @@
 {
   "name": "estatico",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Making a static React App",
   "main": "index.js",
   "author": "Martiuh González",
@@ -17,6 +17,7 @@
     "copy-webpack-plugin": "^4.5.3",
     "create-file-webpack": "^1.0.0",
     "cross-env": "^5.2.0",
+    "disable-output-webpack-plugin": "^1.0.1",
     "express": "^4.16.4",
     "html-webpack-plugin": "^3.2.0",
     "kebab-hash": "^0.1.2",
@@ -42,7 +43,7 @@
     "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",
     "clean": "rimraf dist",
-    "build:client": "cross-env NODE_ENV=production webpack --mode production --colors --config estatico.client.js",
-    "build:estatico": "cross-env NODE_ENV=production webpack --mode production"
+    "build:client": "cross-env NODE_ENV=production webpack --mode production --colors",
+    "build:estatico": "cross-env NODE_ENV=production webpack --mode production --config estatico.webpack.js"
   }
 }

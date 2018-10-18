@@ -43,6 +43,7 @@ export default function Layout({ pages }) {
           <Link to='world'>World</Link>
         </nav>
       </header>
+      <h1>Estatico</h1>
       <EstaticoRouter />
     </React.Fragment>
   )
