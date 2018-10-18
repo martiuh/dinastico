@@ -72,7 +72,7 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({
-      title: 'Estatico',
+      template: path.resolve(__dirname, 'template.html'),
       inject: true
     }),
     // new webpack.NamedChunksPlugin(chunk => {

@@ -22,7 +22,7 @@
     "kebab-hash": "^0.1.2",
     "md5": "^2.2.1",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react-dom": "16.4.2",
     "react-loadable": "^5.5.0",
     "react-universal-component": "^3.0.3",
     "rimraf": "^2.6.2",
@@ -42,7 +42,7 @@
     "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",
     "clean": "rimraf dist",
-    "build:client": "cross-env NODE_ENV=production webpack --mode production --colors --config estatico.clientSide.js",
+    "build:client": "cross-env NODE_ENV=production webpack --mode production --colors --config estatico.client.js",
     "build:estatico": "cross-env NODE_ENV=production webpack --mode production"
   }
 }
