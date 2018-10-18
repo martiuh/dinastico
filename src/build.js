@@ -13,6 +13,7 @@ export default function(locals) {
   const routeName = routes[locals.path] // The name of the component
   const pageLocation = estaticoManifest[routeName] // Esto va a pasarse por window. para que lo renderé en el client side
   const jsArr = [
+    pageLocation,
     estaticoManifest['vendor.js'],
     estaticoManifest['bundle.js'],
     estaticoManifest['runtime.js']
@@ -31,7 +32,6 @@ export default function(locals) {
       <Layout />
     </ServerLocation>
   )
-
   const appString = renderToString(<App />)
   return template(appString, { Pages, js })
 }

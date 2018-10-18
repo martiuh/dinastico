@@ -36,7 +36,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "estatico": "yarn build && yarn serve",
+    "prod": "yarn build && yarn serve",
     "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",
     "clean": "rimraf dist",

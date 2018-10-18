@@ -3,6 +3,7 @@ import { hydrate } from 'react-dom'
 import { Link, Router } from '@reach/router'
 import axios from 'axios'
 import universal from 'react-universal-component'
+import Loadable from 'react-loadable'
 
 import { isServer } from './utils'
 
@@ -22,13 +23,23 @@ const RucIndex = universal(props => import(`${__dirname}/./pages/index`), {
   loading: Loading,
   error: ErrorComponent
 })
+
+// const withLoadable = page => Loadable({
+//   loading: Loading,
+//   loader: () => import(`${__dirname}/./pages/${page}`)
+// })
+// const HomeAsync = () => withLoadable('index')
+// const WorldAsync = () => withLoadable('world')
+// const HelloAsync = () => withLoadable('hello')
+
 const HomeAsync = () => <RucIndex />
 const HelloAsync = () => <UniversalComponent page='hello' />
 const WorldAsync = () => <UniversalComponent page='world' />
 
+console.log('Hola a todos')
 
 export default function Layout({ pages }) {
-  const CustomRouter = () => (
+  const EstaticoRouter = () => (
     <Router>
       <HomeAsync path='/' />
       <HelloAsync path='hello' />
@@ -45,13 +56,14 @@ export default function Layout({ pages }) {
           <Link to='world'>World</Link>
         </nav>
       </header>
-      <CustomRouter />
+      <EstaticoRouter />
     </React.Fragment>
   )
 }
 
 
-if (typeof global.document !== 'undefined') {
+if (typeof window !== 'undefined') {
+  console.log('HEHEHE')
   const estaticoRoot = document.getElementById('__estatico')
   hydrate(
     <Layout />,
