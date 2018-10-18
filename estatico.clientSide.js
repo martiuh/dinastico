@@ -4,6 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const md5 = require('md5')
+const HtmlPlugin = require('html-webpack-plugin')
 
 const config = require('./engine/config')
 const { addAsset, getManifest } = require('./engine/assets')
@@ -28,28 +29,28 @@ fs.writeFile(path.join(__dirname, 'components.js'), buildRoutes() , err => {
 })
 
 module.exports = {
+  entry: {
+    bundle: path.resolve(__dirname, 'src')
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name]-[chunkhash:10].js'
   },
-  entry: {
-    bundle: path.resolve(__dirname, 'src')
-  },
   mode: 'production',
   cache: {},
   devtool: 'source-maps',
   optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/](react|react-dom|react-universal-component|@reach\/router)[\\/]/,
-          name: 'vendor',
-          chunks: 'all'
-        }
-      }
-    },
-    runtimeChunk: 'single',
+    // splitChunks: {
+    //   cacheGroups: {
+    //     vendor: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       name: 'vendor',
+    //       chunks: 'all'
+    //     }
+    //   }
+    // },
+    // runtimeChunk: 'single',
     minimizer: [new TerserPlugin({
       sourceMap: true,
       terserOptions: {
@@ -64,11 +65,16 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       }
     ]
   },
   plugins: [
+    new HtmlPlugin({
+      title: 'Estatico',
+      inject: true
+    }),
     // new webpack.NamedChunksPlugin(chunk => {
     //   const hashChunk = () => (
     //     md5(Array.from(chunk.modulesIterable, m => m.identifier().join().slice(0, 10)))
