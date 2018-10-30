@@ -26,12 +26,20 @@ const HomeAsync = () => <RucIndex />
 const HelloAsync = () => <UniversalComponent page='hello' />
 const WorldAsync = () => <UniversalComponent page='world' />
 
+const _404 = () => (
+  <div>
+    404 Not Found
+    <Link to='/'>Go to home</Link>
+  </div>
+)
+
 export default function Layout({ pages }) {
   const EstaticoRouter = () => (
     <Router>
       <HomeAsync path='/' />
       <HelloAsync path='hello' />
-      <WorldAsync path='world' />
+      <WorldAsync path='world/*' />
+      <_404 path='*' />
     </Router>
   )
 
