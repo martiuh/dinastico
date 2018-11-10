@@ -1,5 +1,6 @@
 import React from 'react'
-import { Router, Link } from '@reach/router'
+import { Link } from '@reach/router'
+import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
 
 const YouWorlded = ({ worlded }) => {
   return (
@@ -20,14 +21,14 @@ class World extends React.Component {
   render() {
     const { count } = this.state
     return (
-      <React.Fragment>
         <h1
           onClick={() => this.setState({ count: count + 1})}
         >
             World +{count}
         </h1>
-        <Link to={`${count}`}>Want to know hoy much you worlded</Link>
-      </React.Fragment>
+        <Link to='/'>Incio</Link>
+        <GreetingAmongWorlds />
+      </main>
     )
   }
 }

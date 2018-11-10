@@ -1,4 +1,5 @@
-- Add React Router
+- ~~Add React Router~~
 - Add a vendor.js
 - Programatically build a Router from src/pages folder
-- Support page folder to export Routes as children, after that build a folder inside the parent directory in order to allow url parameters
+- Support page folder to export Routes as Routers, after that build a folder inside the parent directory in order to allow url parameters
+- Build a file system for static reachable urls and a .htaccess file to support url parameters
