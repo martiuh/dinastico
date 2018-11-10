@@ -24,7 +24,7 @@ const UniversalIndex = universal(props => import(`${__dirname}/pages/index`), un
 
 const HomeAsync = () => <UniversalIndex />
 const HelloAsync = () => <UniversalComponent page='hello' />
-const WorldAsync = () => <UniversalComponent page='world' />
+const MsgAsync = () => <UniversalComponent page='msg' />
 
 const _404 = () => (
   <div>
@@ -38,7 +38,7 @@ export default function Layout({ pages }) {
     <Router>
       <HomeAsync path='/' />
       <HelloAsync path='hello' />
-      <WorldAsync path='world/*' />
+      <MsgAsync path='msg/*' />
       <_404 path='*' />
     </Router>
   )

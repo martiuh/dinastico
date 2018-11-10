@@ -1,5 +1,4 @@
 // Only one entry point
-const path = require('path')
 const webpackMerge = require('webpack-merge')
 const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 
@@ -16,7 +15,9 @@ const baseConfig = (env, envConfig) => {
   const shared = sharedConfig(env)
   const config = {
     ...shared,
-    plugins: []
+    plugins: [
+      new ExtractCSSChunks()
+    ]
   }
 
   return webpackMerge(envConfig, config)

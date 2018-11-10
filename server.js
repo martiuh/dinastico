@@ -8,5 +8,6 @@ PORT = env.PORT || PORT
 // app.enable('strict routing')
 app.use(express.static(path.resolve(__dirname, 'dist')))
 
+// app.use('/msg/:saludo', express.static(path.resolve(__dirname, 'dist', 'msg')))
 app.listen(PORT, () => console.log('App listening in localhost:' + PORT))
 // Hola

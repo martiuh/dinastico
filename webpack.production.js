@@ -42,7 +42,6 @@ module.exports = {
     new ManifestPlugin({
       fileName: config.manifestFileName,
     }),
-    new ExtractCSSChunks(),
     new StatsWriterPlugin()
     // new HtmlPlugin({
     //   inject: true,

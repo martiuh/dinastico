@@ -7,6 +7,7 @@
     }]
   ],
   "plugins": [
+    "@babel/plugin-proposal-class-properties",
     "universal-import",
     "@babel/plugin-syntax-dynamic-import"
   ]

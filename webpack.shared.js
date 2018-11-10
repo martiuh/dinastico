@@ -5,7 +5,7 @@ module.exports = function webpackShared(env) {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           loader: 'babel-loader'
         },
         {
@@ -18,7 +18,7 @@ module.exports = function webpackShared(env) {
       ]
     },
     resolve: {
-      extensions: ['.js', '.css']
+      extensions: ['.js', '.css', '.jsx']
     }
   }
   return config

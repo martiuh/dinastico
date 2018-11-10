@@ -46,16 +46,15 @@ export default function(locals) {
 
   chunkFiles = chunkFiles.filter(files => !!files)
   const { js, css } = organizeChunks(chunkFiles)
+  const cssArr = css
   let jsArr = [
     ...js,
-    estaticoManifest['vendors-bundle.js'],
-    estaticoManifest['bundle.js'],
-    estaticoManifest['runtime.js'],
+    estaticoManifest['vendors-bundle'],
+    estaticoManifest['bundle']
   ]
 
   jsArr = jsArr.filter(value => !!value)
 
-  const cssArr = css
   const Pages = Object.keys(routes).map(P => {
     // BUG: Without this require I'm not able to run the builder
     require(`./pages/${routes[P]}`)
@@ -73,5 +72,5 @@ export default function(locals) {
     </ServerLocation>
   )
   const appString = renderToString(<App />)
-  return template(appString, { Pages, js, css })
+  return template(appString, { Pages, js: jsArr, css: cssArr })
 }

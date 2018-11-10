@@ -2,12 +2,16 @@ import React from 'react'
 import { Link } from '@reach/router'
 
 export default ({ children }) => (
-  <header>
-    <nav>
-      <Link to='/'>Home</Link>
-      <Link to='/hello'>Hello</Link>
-      <Link to='/world'>World</Link>
-    </nav>
+  <React.Fragment>  
+    <header>
+      <nav className='navbar is-danger'>
+        <div className='navbar-brand'>
+        <Link to='/' className='navbar-item'>Home</Link>
+        <Link to='/hello' className='navbar-item'>Hello</Link>
+        <Link to='/msg' className='navbar-item'>Msg</Link>
+        </div>
+      </nav>
+    </header>
     {children}
-  </header>
+  </React.Fragment>
 )
