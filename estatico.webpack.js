@@ -3,8 +3,11 @@ const { StatsWriterPlugin } = require('webpack-stats-plugin')
 const path = require('path')
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
 const DisableOutput = require('disable-output-webpack-plugin')
-
+const webpack = require('webpack')
 const { readdirSync } = require('fs')
+const webpackMerge = require('webpack-merge')
+
+const sharedConfig = require('./webpack.shared')
 
 const pagesPath = path.resolve(__dirname, 'src', 'pages')
 const pages = readdirSync(pagesPath)
@@ -16,30 +19,46 @@ const paths = pages.map(P => {
   return indexName
 })
 
-module.exports = {
-  mode: 'production',
-  entry: path.resolve(__dirname, 'src', 'build'),
-  output: {
-    filename: '.estatico__hidden.js',
-    path: path.join(__dirname, 'dist'),
-    libraryTarget: 'umd',
-    globalObject: 'this'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      }
+module.exports = function estaticoWebpack(env) {
+  const config = {
+    mode: 'production',
+    entry: path.resolve(__dirname, 'src', 'build'),
+    output: {
+      filename: '.estatico__hidden.js',
+      path: path.join(__dirname, 'dist'),
+      libraryTarget: 'umd',
+      globalObject: 'this'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'css-loader/locals',
+              options: {
+                modules: true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new StaticSiteGeneratorPlugin({
+        paths,
+        locals: {
+          routes
+        }
+      }),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      })
     ]
-  },
-  plugins: [
-    new StaticSiteGeneratorPlugin({
-      paths,
-      locals: {
-        routes
-      }
-    })
-  ]
+  }
+
+  let shared = sharedConfig(env)
+  shared.module.rules = shared.module.rules.filter(({ test }) => String(test) !== String(/\.css$/) )
+  return webpackMerge.smart(shared, config)
 }

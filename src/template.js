@@ -1,11 +1,14 @@
-export default (string, { Pages, js}) => {
+export default (string, { Pages, js, css }) => {
   // The slash is added by estatico-assets-manifest.json
-  const jsString = js.map(J => `<script src="${J}" type="text/javascript" async></script>`).join('')
+  const jsString = js.map(J => `<script src="/${J}" type="text/javascript" defer></script>`).join('')
+  const cssString = css.map(C => `<link href="/${C}" rel="stylesheet" />`)
+
   return(`<!DOCTYPE html>
   <html lang="es" dir="ltr">
     <head>
       <meta charset="utf-8">
       <title>Estatico * Simple Router</title>
+      ${cssString}
     </head>
     <body>
       <div id="__estatico">

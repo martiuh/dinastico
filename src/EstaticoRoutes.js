@@ -13,16 +13,16 @@ const ErrorComponent = () => <h1>Error :(</h1>
 const universalOpts = {
   loading: Loading,
   error: ErrorComponent,
-  minDelay: 500
+  minDelay: 0
 }
 
-const pagesFolder = pge => `${__dirname}/./pages/${pge}`
+const pagesFolder = pge => `${__dirname}/pages/${pge}`
 
-const UniversalComponent = universal(({ page }) => import(`${__dirname}/./pages/${page}`), universalOpts)
+const UniversalComponent = universal(({ page }) => import(`${__dirname}/pages/${page}`), universalOpts)
 
-const RucIndex = universal(props => import(`${__dirname}/./pages/index`), universalOpts)
+const UniversalIndex = universal(props => import(`${__dirname}/pages/index`), universalOpts)
 
-const HomeAsync = () => <RucIndex />
+const HomeAsync = () => <UniversalIndex />
 const HelloAsync = () => <UniversalComponent page='hello' />
 const WorldAsync = () => <UniversalComponent page='world' />
 

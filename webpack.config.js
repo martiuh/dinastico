@@ -1,7 +1,9 @@
 // Only one entry point
 const path = require('path')
 const webpackMerge = require('webpack-merge')
+const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 
+const sharedConfig = require('./webpack.shared')
 const dev = require('./webpack.dev')
 const production = require('./webpack.production')
 
@@ -11,11 +13,16 @@ const isDev = NODE_ENV === 'development'
 
 const baseConfig = (env, envConfig) => {
   const estaticoFilename = isDev ? 'dev' : 'build'
-  const config = {}
+  const shared = sharedConfig(env)
+  const config = {
+    ...shared,
+    plugins: []
+  }
+
   return webpackMerge(envConfig, config)
 }
 
-module.exports = (env, argv) => {
+module.exports = function webpackConfig(env, argv) {
   let config = baseConfig(env, dev)
   if (NODE_ENV === 'production') {
     config = baseConfig(env, production)
