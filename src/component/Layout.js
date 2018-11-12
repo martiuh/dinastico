@@ -18,7 +18,6 @@ export default ({ children }) => (
           const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
           nextCompo.preload()
             .then(loaded => {
-              console.log(loaded)
               navigate('/hello')
             })
             .catch(err => console.log(err))
@@ -33,13 +32,26 @@ export default ({ children }) => (
           const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
           nextCompo.preload()
             .then(loaded => {
-              console.log(loaded)
               navigate('/world')
             })
             .catch(err => console.log(err))
         }}
       >
         World
+      </a>
+      <a
+        to='/msg'
+        onClick={() => {
+          const request = 'msg'
+          const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
+          nextCompo.preload()
+            .then(loaded => {
+              navigate('/msg')
+            })
+            .catch(err => console.log(err))
+        }}
+      >
+        Msg
       </a>
     </nav>
     {children}

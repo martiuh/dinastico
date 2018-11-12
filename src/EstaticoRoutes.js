@@ -5,6 +5,7 @@ import axios from 'axios'
 import universal from 'react-universal-component'
 import Loadable from 'react-loadable'
 
+import Msg from './pages/msg'
 import { isServer } from './utils'
 
 const Loading = () => <h1>...</h1>
@@ -25,7 +26,7 @@ const UniversalIndex = universal(props => import(`${__dirname}/pages/index`), un
 const HomeAsync = () => <UniversalIndex />
 const HelloAsync = () => <UniversalComponent page='hello' />
 const WorldAsync = () => <UniversalComponent page='world' />
-
+const MsgAsync = () => <UniversalComponent page='msg' />
 const _404 = () => (
   <div>
     404 Not Found
@@ -39,6 +40,7 @@ export default function Layout({ pages }) {
       <HomeAsync path='/' />
       <HelloAsync path='hello' />
       <WorldAsync path='world/*' />
+      <MsgAsync path='msg/*' />
       <_404 path='*' />
     </Router>
   )

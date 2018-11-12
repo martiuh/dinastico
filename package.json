@@ -41,7 +41,9 @@
     "webpack-stats-plugin": "^0.2.1",
     "write-file-webpack-plugin": "^4.4.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/node": "^7.0.0"
+  },
   "scripts": {
     "start": "yarn clean && cross-env NODE_ENV=development webpack-dev-server",
     "prod": "yarn build && yarn serve",

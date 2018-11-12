@@ -4,6 +4,7 @@ import { ServerLocation } from '@reach/router'
 
 import { assetsByChunkName as estaticoStats} from '../dist/stats.json'
 import manifest from '../dist/estatico-assets-manifest.json'
+import DefaultHtml from './DefaultHtml'
 import template from './template'
 import EstaticoRoutes from './EstaticoRoutes'
 // 1. Get Pages
@@ -48,19 +49,22 @@ export default function(locals) {
   const { js, css } = organizeChunks(chunkFiles)
   const addPath = value => `/${value}`
   let jsArr = [
-    ...js.map(addPath),
-    manifest['bundle.js'],
+    ...js
   ]
+  const bundleChunks = organizeChunks(estaticoStats['bundle'])
+  jsArr = [...jsArr, ...bundleChunks.js]
   jsArr = jsArr.filter(value => !!value)
-
-  let cssArr = css
+  jsArr = jsArr.map(addPath)
+  
+  let cssArr = [...css, ...bundleChunks.css]
+  cssArr = cssArr.filter(value => !!value)
   cssArr = cssArr.map(addPath)
 
   const Pages = Object.keys(routes).map(P => {
     // BUG: Without this require I'm not able to run the builder
     require(`./pages/${routes[P]}`)
     return {
-      Page: 'HEHE',
+      Page: manifest[P],
       path: P
     }
   })
