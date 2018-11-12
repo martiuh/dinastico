@@ -48,14 +48,11 @@ export default function(locals) {
   chunkFiles = chunkFiles.filter(files => !!files)
   const { js, css } = organizeChunks(chunkFiles)
   const addPath = value => `/${value}`
-  let jsArr = [
-    ...js
-  ]
   const bundleChunks = organizeChunks(estaticoStats['bundle'])
-  jsArr = [...jsArr, ...bundleChunks.js]
+  let jsArr = [...js, ...bundleChunks.js]
   jsArr = jsArr.filter(value => !!value)
   jsArr = jsArr.map(addPath)
-  
+
   let cssArr = [...css, ...bundleChunks.css]
   cssArr = cssArr.filter(value => !!value)
   cssArr = cssArr.map(addPath)
