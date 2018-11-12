@@ -8,6 +8,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-classes": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@reach/router": "^1.2.1",
@@ -28,6 +29,7 @@
     "react-dom": "^16.6.1",
     "react-loadable": "^5.5.0",
     "react-universal-component": "^3.0.3",
+    "regenerator": "^0.13.2",
     "rimraf": "^2.6.2",
     "static-site-generator-webpack-plugin": "^3.4.1",
     "terser-webpack-plugin": "^1.1.0",

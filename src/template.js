@@ -1,7 +1,7 @@
 export default (string, { Pages, js, css }) => {
   // The slash is added by estatico-assets-manifest.json
-  const jsString = js.map(J => `<script src="/${J}" type="text/javascript" defer></script>`).join('')
-  const cssString = css.map(C => `<link href="/${C}" rel="stylesheet" />`)
+  const jsString = js.map(J => `<script src="${J}" type="text/javascript" defer></script>`).join('\n')
+  const cssString = css.map(C => `<link href="${C}" rel="stylesheet" />`)
 
   return(`<!DOCTYPE html>
   <html lang="es" dir="ltr">

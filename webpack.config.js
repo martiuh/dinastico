@@ -16,7 +16,13 @@ const baseConfig = (env, envConfig) => {
   const shared = sharedConfig(env)
   const config = {
     ...shared,
-    plugins: []
+    plugins: [
+      new ExtractCSSChunks({
+        filename: `[name]${isDev ? '' : '.[chunkhash]'}.css`,
+        hot: isDev,
+        cssModules: false
+      })
+    ]
   }
 
   return webpackMerge(envConfig, config)

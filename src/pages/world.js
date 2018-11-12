@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import { Link, Router } from '@reach/router'
 import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
 
 const YouWorlded = ({ worlded }) => {
@@ -21,6 +21,7 @@ class World extends React.Component {
   render() {
     const { count } = this.state
     return (
+      <main>
         <h1
           onClick={() => this.setState({ count: count + 1})}
         >

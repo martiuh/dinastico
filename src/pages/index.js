@@ -4,6 +4,8 @@ import '../css'
 
 export default () => (
   <Layout>
-    <h1>home.js</h1>
+    <div className='box'>
+      <h1>home.js</h1>
+    </div>
   </Layout>
 )
