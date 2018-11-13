@@ -1,12 +1,12 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { ServerLocation } from '@reach/router'
+import { ServerLocation, Router } from '@reach/router'
 
-import { assetsByChunkName as estaticoStats} from '../dist/stats.json'
-import manifest from '../dist/estatico-assets-manifest.json'
+import { assetsByChunkName as estaticoStats} from '../public/stats.json'
+import manifest from '../public/estatico-assets-manifest.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
-import EstaticoRoutes from './EstaticoRoutes'
+// import EstaticoRoutes from './EstaticoRoutes'
 // 1. Get Pages
 // 2. Make routes according to filename
 
@@ -75,8 +75,6 @@ export default function(locals) {
 
   let pages = {}
   Object.keys(routes).map(P => {
-    // BUG: Without this require I'm not able to run the builder
-    require(`./pages/${routes[P]}`)
     pages = {
       ...pages,
       [P]: manifest[routes[P]]
@@ -85,9 +83,13 @@ export default function(locals) {
 
   // Instead of sending the page, I'd rather send the location and I avoid all the hassle
   const url = locals.path
+  const Component = require(`./pages/${fileName}`).default
+  console.log({ Component })
   const App = () => (
     <ServerLocation url={url}>
-      <EstaticoRoutes />
+      <Router>
+        <Component path='/*' />
+      </Router>
     </ServerLocation>
   )
   const appString = renderToString(<App />)

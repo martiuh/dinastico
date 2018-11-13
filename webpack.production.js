@@ -13,7 +13,7 @@ module.exports = {
     bundle: path.join(__dirname, 'src')
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '/',
     filename: '[name]-[chunkhash:10].js'
   },

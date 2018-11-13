@@ -25,7 +25,7 @@ module.exports = function estaticoWebpack(env) {
     entry: path.resolve(__dirname, 'src', 'build'),
     output: {
       filename: '.estatico__hidden.js',
-      path: path.join(__dirname, 'dist'),
+      path: path.join(__dirname, 'public'),
       libraryTarget: 'umd',
       globalObject: 'this'
     },

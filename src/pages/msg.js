@@ -14,7 +14,7 @@ function Msg() {
 function MyCustomMessage({ message }) {
   return (
     <main>
-      <h3>{message || 'Mensaje pendiente...'}</h3>
+      {message && <h3>{message}</h3>}
       <Link to='/msg'>Back {`<--`}</Link>
     </main>
   )

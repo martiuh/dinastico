@@ -50,7 +50,7 @@
     "prod": "yarn build && yarn serve",
     "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf public",
     "build:client": "cross-env NODE_ENV=production webpack --mode production --colors",
     "build:estatico": "cross-env NODE_ENV=production webpack --mode production --config estatico.webpack.js"
   }

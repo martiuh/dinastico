@@ -6,8 +6,10 @@ module.exports = {
     bundle: path.join(__dirname, 'src')
   },
   mode: 'development',
-  optimization: {
-
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/',
+    filename: '[name]-[chunkhash:10].js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
