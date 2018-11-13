@@ -1,59 +1,38 @@
 import React from 'react'
-import { Link, Router } from '@reach/router'
-import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
+import { Router, Link } from '@reach/router'
 
-const Mensajeado = ({ saludo }) => (
-    <main className='content container'>
-      <h1>You digo: {saludo || 'X'}</h1>
-      <Link to='/msg' className='button is-success'>Go back to world 0!</Link>
+import '../css/msg'
+
+function Msg() {
+  return (
+    <main>
+      <h1>Msg.js</h1>
     </main>
   )
+}
 
-class Msg extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      count: 0
-    }
-  }
-  render() {
-    const { count } = this.state
-    return (
-      <main>
-        <h1
-          className='is-size-2'
-          onClick={() => this.setState({ count: count + 1})}
-        >
-            Mensaje Secreto
-        </h1>
-        <Link to='perrin'>Eres un...</Link>
-        <GreetingAmongWorlds />
-      </main>
-    )
-  }
+function MyCustomMessage({ message }) {
+  return (
+    <main>
+      <h3>{message || 'Mensaje pendiente...'}</h3>
+      <Link to='/msg'>Back {`<--`}</Link>
+    </main>
+  )
 }
 
 export default () => (
   <React.Fragment>
-  <nav className='navbar is-warning'>
-    <div className="navbar-brand">
-      <Link
-        to='/'
-        className="navbar-item"
-      >
+    <nav className='msg-navbar'>
+      <Link to='/'>
         Inicio
       </Link>
-      <Link
-        className='navbar-item'
-        to='eres-un-galleto'
-      >
-        Mensaje Público
+      <Link to='/msg/somos-chivas'>
+        Somos Chivas
       </Link>
-    </div>
-  </nav> 
-  <Router>
-    <Msg path='/' />
-    <Mensajeado path=':saludo' />
-  </Router>
+    </nav>
+    <Router>
+      <Msg path='/' />
+      <MyCustomMessage path=':message' />
+    </Router>
   </React.Fragment>
 )

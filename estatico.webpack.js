@@ -13,7 +13,7 @@ const pagesPath = path.resolve(__dirname, 'src', 'pages')
 const pages = readdirSync(pagesPath)
 const routes = {}
 const paths = pages.map(P => {
-  const routeName = `/${P.split('.js')[0]}/`
+  const routeName = `/${P.split('.js')[0]}`
   const indexName = P !== 'index.js' ? routeName : '/'
   routes[indexName] = P
   return indexName
@@ -54,6 +54,12 @@ module.exports = function estaticoWebpack(env) {
       }),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
+      }),
+      new webpack.DefinePlugin({
+        IS_SERVER: true,
+        'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
+        }
       })
     ]
   }

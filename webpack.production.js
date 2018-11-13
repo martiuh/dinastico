@@ -2,7 +2,6 @@ const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 const { StatsWriterPlugin } = require('webpack-stats-plugin')
 
 const config = require('./engine/config')
@@ -21,11 +20,6 @@ module.exports = {
   mode: 'production',
   optimization: {
     splitChunks: {
-        chunks: 'all',
-        minSize: 1,
-        minChunks: 1,
-        name: true,
-        automaticNameDelimiter: '-',
         cacheGroups: {
           vendors: {
              test: /[\\/]node_modules[\\/]/,

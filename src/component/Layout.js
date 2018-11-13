@@ -1,17 +1,59 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import { Link, navigate } from '@reach/router'
+import universal from 'react-universal-component'
+
+import './Layout.css'
+// import EstaticoLink from './EstaticoLink'
 
 export default ({ children }) => (
-  <React.Fragment>  
-    <header>
-      <nav className='navbar is-danger'>
-        <div className='navbar-brand'>
-        <Link to='/' className='navbar-item'>Home</Link>
-        <Link to='/hello' className='navbar-item'>Hello</Link>
-        <Link to='/msg' className='navbar-item'>Msg</Link>
-        </div>
-      </nav>
-    </header>
+  <header>
+    <nav className='navbar'>
+      <Link to='/'>
+        Home
+      </Link>
+      <a
+        to='/hello'
+        onClick={() => {
+          const request = '/hello'
+          const nextCompo = universal(import(`${__dirname}/../pages${request}`))
+          nextCompo.preload()
+            .then(loaded => {
+              navigate(request)
+            })
+            .catch(err => console.log(err))
+        }}
+      >
+        Hello
+      </a>
+      <a
+        to='/world'
+        onClick={() => {
+          const request = '/world'
+          const nextCompo = universal(import(`${__dirname}/../pages${request}`))
+          nextCompo.preload()
+            .then(loaded => {
+              navigate(request)
+            })
+            .catch(err => console.log(err))
+        }}
+      >
+        World
+      </a>
+      <a
+        to='/msg'
+        onClick={() => {
+          const request = 'msg'
+          const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
+          nextCompo.preload()
+            .then(loaded => {
+              navigate('/msg')
+            })
+            .catch(err => console.log(err))
+        }}
+      >
+        Msg
+      </a>
+    </nav>
     {children}
   </React.Fragment>
 )

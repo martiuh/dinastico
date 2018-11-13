@@ -6,6 +6,9 @@ module.exports = {
     bundle: path.join(__dirname, 'src')
   },
   mode: 'development',
+  optimization: {
+
+  },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
     port: 3000,
