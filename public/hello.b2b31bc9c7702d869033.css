@@ -1,0 +1,18 @@
+.navbar {
+  display: flex;
+  background-color: crimson;
+}
+
+.navbar a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.hello-box {
+  background-color: green;
+  width: 100vw;
+}
+
+
+/*# sourceMappingURL=hello.b2b31bc9c7702d869033.css.map*/

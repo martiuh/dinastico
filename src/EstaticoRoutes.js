@@ -4,7 +4,6 @@ import { Link, Router } from '@reach/router'
 import axios from 'axios'
 import universal from 'react-universal-component'
 
-import Msg from './pages/msg'
 import { isServer } from './utils'
 
 const Loading = () => <h1>...</h1>

@@ -1,0 +1,13 @@
+.navbar {
+  display: flex;
+  background-color: crimson;
+}
+
+.navbar a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+
+/*# sourceMappingURL=pendientes.8a25443d109139c4adab.css.map*/

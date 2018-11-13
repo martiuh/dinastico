@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  background-color: crimson;
+}
+
+.navbar a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.box {
+  background-color: blue;
+}
+
+
+/*# sourceMappingURL=index.1d31e130955bfc4a37a8.css.map*/

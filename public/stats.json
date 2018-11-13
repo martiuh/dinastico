@@ -1,0 +1,37 @@
+{
+  "assetsByChunkName": {
+    "index": [
+      "index.1d31e130955bfc4a37a8.css",
+      "index-1d31e13095.js",
+      "index.1d31e130955bfc4a37a8.css.map"
+    ],
+    "msg": [
+      "msg.d5fd540ecfdbaf36395d.css",
+      "msg-d5fd540ecf.js",
+      "msg.d5fd540ecfdbaf36395d.css.map"
+    ],
+    "world": "world-018104c8b6.js",
+    "pages": [
+      "pages.a2df63ea49595bddd594.css",
+      "pages-a2df63ea49.js",
+      "pages.a2df63ea49595bddd594.css.map"
+    ],
+    "hello": [
+      "hello.b2b31bc9c7702d869033.css",
+      "hello-b2b31bc9c7.js",
+      "hello.b2b31bc9c7702d869033.css.map"
+    ],
+    "pendientes": [
+      "pendientes.8a25443d109139c4adab.css",
+      "pendientes-8a25443d10.js",
+      "pendientes.8a25443d109139c4adab.css.map"
+    ],
+    "pages-hello": [
+      "pages-hello.0d3c0a35ed6a58981840.css",
+      "pages-hello-0d3c0a35ed.js",
+      "pages-hello.0d3c0a35ed6a58981840.css.map"
+    ],
+    "pages-pendientes": "pages-pendientes-9028693af5.js",
+    "bundle": "bundle-dc5192cb56.js"
+  }
+}
