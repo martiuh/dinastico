@@ -57,12 +57,13 @@ export default function(locals) {
   cssArr = cssArr.filter(value => !!value)
   cssArr = cssArr.map(addPath)
 
-  const Pages = Object.keys(routes).map(P => {
+  let pages = {}
+  Object.keys(routes).map(P => {
     // BUG: Without this require I'm not able to run the builder
     require(`./pages/${routes[P]}`)
-    return {
-      Page: manifest[P],
-      path: P
+    pages = {
+      ...pages,
+      [P]: manifest[routes[P]]
     }
   })
 
@@ -74,5 +75,5 @@ export default function(locals) {
     </ServerLocation>
   )
   const appString = renderToString(<App />)
-  return template(appString, { Pages, js: jsArr, css: cssArr })
+  return template(appString, { pages, js: jsArr, css: cssArr })
 }

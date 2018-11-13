@@ -54,6 +54,12 @@ module.exports = function estaticoWebpack(env) {
       }),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
+      }),
+      new webpack.DefinePlugin({
+        IS_SERVER: true,
+        'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
+        }
       })
     ]
   }

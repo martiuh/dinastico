@@ -14,11 +14,11 @@ export default ({ children }) => (
       <a
         to='/hello'
         onClick={() => {
-          const request = 'hello'
-          const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
+          const request = '/hello'
+          const nextCompo = universal(import(`${__dirname}/../pages${request}`))
           nextCompo.preload()
             .then(loaded => {
-              navigate('/hello')
+              navigate(request)
             })
             .catch(err => console.log(err))
         }}
@@ -28,11 +28,11 @@ export default ({ children }) => (
       <a
         to='/world'
         onClick={() => {
-          const request = 'world'
-          const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
+          const request = '/world'
+          const nextCompo = universal(import(`${__dirname}/../pages${request}`))
           nextCompo.preload()
             .then(loaded => {
-              navigate('/world')
+              navigate(request)
             })
             .catch(err => console.log(err))
         }}

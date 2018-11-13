@@ -1,5 +1,6 @@
 // Only one entry point
 const path = require('path')
+const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 
@@ -21,6 +22,12 @@ const baseConfig = (env, envConfig) => {
         filename: `[name]${isDev ? '' : '.[chunkhash]'}.css`,
         hot: isDev,
         cssModules: false
+      }),
+      new webpack.DefinePlugin({
+        IS_SERVER: false,
+        'process.env': {
+          NODE_ENV: JSON.stringify(NODE_ENV || 'development')
+        }
       })
     ]
   }

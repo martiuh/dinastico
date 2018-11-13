@@ -22,11 +22,8 @@ const pagesFolder = pge => `${__dirname}/pages/${pge}`
 const UniversalComponent = universal(({ page }) => import(`${__dirname}/pages/${page}`), universalOpts)
 
 const UniversalIndex = universal(props => import(`${__dirname}/pages/index`), universalOpts)
+const UniversalPage = ({ path }) => <UniversalComponent path={path} page={path.split('/')[0]} />
 
-const HomeAsync = () => <UniversalIndex />
-const HelloAsync = () => <UniversalComponent page='hello' />
-const WorldAsync = () => <UniversalComponent page='world' />
-const MsgAsync = () => <UniversalComponent page='msg' />
 const _404 = () => (
   <div>
     404 Not Found
@@ -37,10 +34,11 @@ const _404 = () => (
 export default function Layout({ pages }) {
   const EstaticoRouter = () => (
     <Router>
-      <HomeAsync path='/' />
-      <HelloAsync path='hello' />
-      <WorldAsync path='world/*' />
-      <MsgAsync path='msg/*' />
+      <UniversalIndex path='/' />
+      <UniversalPage path='hello' />
+      <UniversalPage path='world/*' />
+      <UniversalPage path='msg/*' />
+      <UniversalPage path='pendientes' />
       <_404 path='*' />
     </Router>
   )
