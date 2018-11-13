@@ -47,19 +47,9 @@ export default function(locals) {
 
   chunkFiles = chunkFiles.filter(files => !!files)
   const { js, css } = organizeChunks(chunkFiles)
-<<<<<<< HEAD
-  const cssArr = css
-  let jsArr = [
-    ...js,
-    estaticoManifest['vendors-bundle'],
-    estaticoManifest['bundle']
-  ]
-
-=======
   const addPath = value => `/${value}`
   const bundleChunks = organizeChunks(estaticoStats['bundle'])
   let jsArr = [...js, ...bundleChunks.js]
->>>>>>> e2cf25800d4d920449687b6a6d0686001e026b3c
   jsArr = jsArr.filter(value => !!value)
   jsArr = jsArr.map(addPath)
 
@@ -67,12 +57,8 @@ export default function(locals) {
   cssArr = cssArr.filter(value => !!value)
   cssArr = cssArr.map(addPath)
 
-<<<<<<< HEAD
-  const Pages = Object.keys(routes).map(P => {
-=======
   let pages = {}
   Object.keys(routes).map(P => {
->>>>>>> e2cf25800d4d920449687b6a6d0686001e026b3c
     // BUG: Without this require I'm not able to run the builder
     require(`./pages/${routes[P]}`)
     pages = {
@@ -89,9 +75,5 @@ export default function(locals) {
     </ServerLocation>
   )
   const appString = renderToString(<App />)
-<<<<<<< HEAD
-  return template(appString, { Pages, js: jsArr, css: cssArr })
-=======
   return template(appString, { pages, js: jsArr, css: cssArr })
->>>>>>> e2cf25800d4d920449687b6a6d0686001e026b3c
 }
