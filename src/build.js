@@ -34,11 +34,27 @@ export default function(locals) {
     const js = []
     const css = []
 
+    const jsMatch = string => string.match(/\.js$/)
+    const cssMatch = string => string.match(/\.css$/)
+
+    if (!Array.isArray(arr)) {
+      // Find out what file type is
+      if (typeof arr === 'string') {
+        if (jsMatch(arr)) {
+          js.push(arr)
+        }
+        else if (cssMatch(arr)) {
+          css.push(arr)
+        }
+      }
+      return { js, css }
+    }
+
     arr.forEach(A => {
-      if (A.match(/\.js$/)) {
+      if (jsMatch(A)) {
         js.push(A)
       }
-      else if(A.match(/\.css$/)) {
+      else if(cssMatch(A)) {
         css.push(A)
       }
     })
