@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/css/hello.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"pages-hello.0d3c0a35ed6a58981840.css","sourcesContent":[".hello-box {\n  background-color: green;\n  width: 100vw;\n}\n"],"sourceRoot":""}

@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/css/msg.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA","file":"msg.d5fd540ecfdbaf36395d.css","sourcesContent":[".msg-navbar {\n  display: flex;\n  background-color: crimson;\n}\n\n.msg-navbar a {\n  padding: 10px;\n  color: white;\n  text-decoration: none;\n}\n"],"sourceRoot":""}

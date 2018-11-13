@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/component/Layout.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA","file":"pendientes.8a25443d109139c4adab.css","sourcesContent":[".navbar {\n  display: flex;\n  background-color: crimson;\n}\n\n.navbar a {\n  padding: 10px;\n  color: white;\n  text-decoration: none;\n}\n"],"sourceRoot":""}
