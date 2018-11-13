@@ -8,6 +8,7 @@ export default (string, { pages, js, css }) => {
     <head>
       <meta charset="utf-8">
       <title>Estatico * Simple Router</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       ${cssString}
     </head>
     <body>

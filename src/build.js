@@ -84,7 +84,6 @@ export default function(locals) {
   // Instead of sending the page, I'd rather send the location and I avoid all the hassle
   const url = locals.path
   const Component = require(`./pages/${fileName}`).default
-  console.log({ Component })
   const App = () => (
     <ServerLocation url={url}>
       <Router>

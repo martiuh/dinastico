@@ -14,7 +14,7 @@ function Msg() {
 function MyCustomMessage({ message }) {
   return (
     <main>
-      {message && <h3>{message}</h3>}
+      {message && !IS_SERVER && <h3>{message}</h3>}
       <Link to='/msg'>Back {`<--`}</Link>
     </main>
   )

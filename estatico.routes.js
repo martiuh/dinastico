@@ -1,1 +1,0 @@
-const stats = require('./dist/estatico-assets-manifes.json')
