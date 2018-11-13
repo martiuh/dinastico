@@ -3,7 +3,6 @@ import { hydrate } from 'react-dom'
 import { Link, Router } from '@reach/router'
 import axios from 'axios'
 import universal from 'react-universal-component'
-import Loadable from 'react-loadable'
 
 import Msg from './pages/msg'
 import { isServer } from './utils'

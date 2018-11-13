@@ -55,5 +55,5 @@ export default ({ children }) => (
       </a>
     </nav>
     {children}
-  </React.Fragment>
+  </header>
 )

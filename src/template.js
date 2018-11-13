@@ -8,7 +8,6 @@ export default (string, { pages, js, css }) => {
     <head>
       <meta charset="utf-8">
       <title>Estatico * Simple Router</title>
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" rel="stylesheet" />
       ${cssString}
     </head>
     <body>
