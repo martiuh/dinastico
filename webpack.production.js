@@ -10,7 +10,7 @@ const { addAsset, getManifest } = require('./engine/assets')
 module.exports = {
   devtool: 'source-map',
   entry: {
-    bundle: path.join(__dirname, 'src')
+    bundle: path.join(__dirname, 'src', 'production-renderer')
   },
   output: {
     path: path.resolve(__dirname, 'public'),
