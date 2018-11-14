@@ -48,7 +48,7 @@
   "scripts": {
     "start": "yarn clean && cross-env NODE_ENV=development webpack-dev-server",
     "prod": "yarn build && yarn serve",
-    "heroku-start": "yarn serve",
+    "heroku-start": "node server.js",
     "build": "yarn clean && yarn build:client && yarn build:estatico",
     "serve": "cross-env NODE_ENV=production node server.js",
     "clean": "rimraf public",
