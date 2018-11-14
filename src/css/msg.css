@@ -8,3 +8,19 @@
   color: white;
   text-decoration: none;
 }
+
+.msg-email {
+  min-width: 50vw;
+  min-height: 22px;
+  background-color: gray;
+}
+
+.msg-body {
+  min-width: 30vw;
+  min-height: 18px;
+  background-color: lightgray;
+}
+
+.msg-link {
+
+}
