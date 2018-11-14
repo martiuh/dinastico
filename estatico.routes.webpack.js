@@ -8,7 +8,6 @@ const sharedConfig = require('./webpack.shared')
 module.exports = function estaticoWebpack(env) {
   const config = {
     target: 'node',
-    context: __dirname,
     mode: 'production',
     entry: path.resolve(__dirname, 'estatico.router.js'),
     output: {

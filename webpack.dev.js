@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
-    filename: '[name]-[chunkhash:10].js'
+    filename: '[name].js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
