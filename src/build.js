@@ -6,6 +6,7 @@ import { assetsByChunkName as estaticoStats} from '../public/stats.json'
 import manifest from '../public/estatico-assets-manifest.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
+import { jsMatch, cssMatch } from './utils'
 // import EstaticoRoutes from './EstaticoRoutes'
 // 1. Get Pages
 // 2. Make routes according to filename
@@ -21,21 +22,18 @@ export default function(locals) {
     const fileIndex = chunks.indexOf(chunkName)
     if (fileIndex >= 0) {
       const files = estaticoStats[chunk]
+      console.log({chunkName, files})
       if (Array.isArray(files)) {
         return files.forEach(F => chunkFiles.push(F))
       }
       return chunkFiles.push(files)
     }
-
     return false
   })
 
   const organizeChunks = arr => {
     const js = []
     const css = []
-
-    const jsMatch = string => string.match(/\.js$/)
-    const cssMatch = string => string.match(/\.css$/)
 
     if (!Array.isArray(arr)) {
       // Find out what file type is

@@ -2,3 +2,4 @@ node_modules
 public
 .routes
 yarn-error.log
+public

@@ -3,11 +3,11 @@ const HtmlPlugin = require('html-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { StatsWriterPlugin } = require('webpack-stats-plugin')
-
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const config = require('./engine/config')
 const { addAsset, getManifest } = require('./engine/assets')
 
-module.exports = {
+const clientProduction = {
   devtool: 'source-map',
   entry: {
     bundle: path.join(__dirname, 'src', 'production-renderer')
@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
-    filename: '[name]-[chunkhash:10].js'
+    filename: '[name]-[chunkhash].js'
   },
   mode: 'production',
   optimization: {
@@ -43,3 +43,8 @@ module.exports = {
     // }),
   ]
 }
+if (process.env.ANAYLYZE) {
+  clientProduction.plugins.push(new BundleAnalyzerPlugin())
+}
+
+module.exports = clientProduction

@@ -11,7 +11,7 @@ module.exports = function estaticoWebpack(env) {
     mode: 'production',
     entry: path.resolve(__dirname, 'estatico.router.js'),
     output: {
-      filename: '.e__hidden.js',
+      filename: 'buildRoutes.js',
       path: path.join(__dirname, '.routes'),
     },
     module: {
