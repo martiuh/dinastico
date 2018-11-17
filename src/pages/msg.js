@@ -2,31 +2,21 @@ import React from 'react'
 import { Router, Link } from '@reach/router'
 import axios from 'axios'
 
-import '../css/msg'
-
-const CommentCard = ({ email, body, to }) => (
-  <React.Fragment>
-    <h2 className='msg-email'>{email}</h2>
-    <p className='msg-body'>{body}</p>
-    {to && <Link className='msg-link' to={to}>Ver más</Link>}
-  </React.Fragment>
-)
-
-CommentCard.defaultProps = {
-  email: '',
-  body: '',
-  to: ''
-}
+import MyCustomMessage from '../component/MyCustomMessage'
+import CommentCard from '../component/CommentCard'
+import '../css/msg.css'
 
 class Msg extends React.Component {
   state = {
-    comments: [1,2,3,4,5,6,7,8,9,10],
+    comments: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     fetched: null
   }
-  
+
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/comments')
-      .then(({ data }) => setTimeout(() => this.setState({ comments: data.slice(0, 10), fetched: true }), 500))
+      .then(({ data }) => (
+        setTimeout(() => this.setState({ comments: data.slice(0, 10), fetched: true }), 500)
+      ))
   }
 
   render() {
@@ -48,35 +38,6 @@ class Msg extends React.Component {
             />
           )
         })}
-      </main>
-    )
-  }
-}
-
-class MyCustomMessage extends React.Component {
-  state = {
-    comment: {},
-    fetched: false
-  }
-
-  componentDidMount() {
-    const { message } = this.props
-    if (typeof parseInt(message) === 'number') {
-      axios.get(`https://jsonplaceholder.typicode.com/comments/${message}`)
-        .then(({ data }) => {
-          this.setState({ comment: data, fetched: true })
-        })
-    }
-  }
-
-  render() {
-    const { comment, fetched } = this.state 
-    return (
-      <main>
-        {!fetched ? <CommentCard /> : (
-          <CommentCard key={comment.id} {...comment} />
-        )}
-        <Link to='/msg'>Back {`<--`}</Link>
       </main>
     )
   }

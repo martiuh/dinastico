@@ -3,12 +3,12 @@
   https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-link/src/index.js
 */
 
-/*global __PATH_PREFIX__ */
-import React from "react"
-import { Link } from "@reach/router"
+/* global __PATH_PREFIX__ */
+import React from 'react';
+import { Link } from '@reach/router';
 
 export function withPrefix(path) {
-  return normalizePath(`${__PATH_PREFIX__}/${path}`)
+  return normalizePath(`${__PATH_PREFIX__}/${path}`);
 }
 
 function normalizePath(path) {
@@ -80,7 +80,7 @@ class EstaticoLink extends React.Component {
     }
   }
 
-  defaultGetProps = ({ isCurrent }) => {
+  defaultGetProps({ isCurrent }) {
     if (isCurrent) {
       return {
         className: [this.props.className, this.props.activeClassName]

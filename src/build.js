@@ -2,7 +2,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
 
-import { assetsByChunkName as estaticoStats} from '../public/stats.json'
+import { assetsByChunkName as estaticoStats } from '../public/stats.json'
 import manifest from '../public/estatico-assets-manifest.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
@@ -11,7 +11,7 @@ import { jsMatch, cssMatch } from './utils'
 // 1. Get Pages
 // 2. Make routes according to filename
 
-export default function(locals) {
+export default function (locals) {
   const { routes } = locals
   const fileName = routes[locals.path] // The name of the component
   const chunkName = fileName.split('.js')[0]
@@ -72,11 +72,12 @@ export default function(locals) {
   cssArr = cssArr.map(addPath)
 
   let pages = {}
-  Object.keys(routes).map(P => {
+  Object.keys(routes).forEach(P => {
     pages = {
       ...pages,
       [P]: manifest[routes[P]]
     }
+    return null
   })
 
   // Instead of sending the page, I'd rather send the location and I avoid all the hassle
