@@ -20,12 +20,12 @@ class Msg extends React.Component {
   }
 
   render() {
-    const { comments } = this.state
+    const { comments, fetched } = this.state
     return (
       <main>
         <h1>Msg.js</h1>
         {comments.map(C => {
-          if (typeof C === 'number') {
+          if (!fetched) {
             return <CommentCard key={C} />
           }
 

@@ -3,7 +3,6 @@ import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
 
 import { assetsByChunkName as estaticoStats } from '../public/stats.json'
-import manifest from '../public/estatico-assets-manifest.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
 import { jsMatch, cssMatch } from './utils'
@@ -15,7 +14,6 @@ export default function (locals) {
   const { routes } = locals
   const fileName = routes[locals.path] // The name of the component
   const chunkName = fileName.split('.js')[0]
-  const pageLocation = manifest[fileName] // Esto va a pasarse por window. para que lo renderé en el client side
   let chunkFiles = []
   Object.keys(estaticoStats).map(chunk => {
     const chunks = chunk.split('-')
@@ -44,24 +42,24 @@ export default function (locals) {
           css.push(arr)
         }
       }
-      return { js, css }
     }
-
-    arr.forEach(A => {
-      if (jsMatch(A)) {
-        js.push(A)
-      }
-      else if(cssMatch(A)) {
-        css.push(A)
-      }
-    })
+    else {
+      arr.forEach(A => {
+        if (jsMatch(A)) {
+          js.push(A)
+        }
+        else if (cssMatch(A)) {
+          css.push(A)
+        }
+      })
+    }
     return { js, css }
   }
 
   chunkFiles = chunkFiles.filter(files => !!files)
   const { js, css } = organizeChunks(chunkFiles)
   const addPath = value => `/${value}`
-  const bundleChunks = organizeChunks(estaticoStats['bundle'])
+  const bundleChunks = organizeChunks(estaticoStats.bundle) // webpack bundle
   let jsArr = [...js, ...bundleChunks.js]
   jsArr = jsArr.filter(value => !!value)
   jsArr = jsArr.map(addPath)
@@ -79,8 +77,8 @@ export default function (locals) {
     return null
   })
 
-  // Instead of sending the page, I'd rather send the location and I avoid all the hassle
   const url = locals.path
+  // eslint-disable-next-line import/no-dynamic-require, global-require
   const Component = require(`./pages/${fileName}`).default
   const App = () => (
     <ServerLocation url={url}>
