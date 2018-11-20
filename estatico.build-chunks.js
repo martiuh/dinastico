@@ -1,7 +1,7 @@
 // RUN all the React components in the pages folder and build a Router
 import fs from 'fs'
 import path from 'path'
-import { kebabCase } from 'lodash'
+import kebabCase  from 'lodash/kebabCase'
 import slash from 'slash'
 
 import { jsMatch } from './src/utils'

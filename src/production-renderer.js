@@ -11,10 +11,14 @@ window.asyncPages = asyncPages
 let { pathname } = window.location
 const estaticoRoot = document.getElementById('__estatico')
 
-pathname = pathname === '/' ? 'index' : pathname
+pathname = pathname === '/' ? '/index/' : pathname
 
 const pageName = getPage(pathname)
-const thePage = asyncPages[pageName]
+let thePage = asyncPages[pageName]
+if (!thePage) {
+  const startsWith = pathname.split('/').filter(item => item !== '')[0]
+  thePage = asyncPages[getPage(`${startsWith}/`)]
+}
 if (thePage && thePage.load) {
   thePage.load()
     .then(PreComponent => {
