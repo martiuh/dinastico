@@ -36,7 +36,8 @@ class World extends React.Component {
 
 export default () => (
   <Router>
-    <World path='/' />
-    <YouWorlded path=':worlded' />
+    <World path='/*'>
+      <YouWorlded path='/worlded/:worlded' />
+    </World>
   </Router>
 )

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { isServer } from '../utils'
 import Layout from '../component/Layout'
 
 import '../css'

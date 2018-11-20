@@ -15,7 +15,7 @@ class Msg extends React.Component {
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/comments')
       .then(({ data }) => (
-        setTimeout(() => this.setState({ comments: data.slice(0, 10), fetched: true }), 500)
+        setTimeout(() => this.setState({ comments: data.slice(0, 10), fetched: true }), 100)
       ))
   }
 
@@ -45,17 +45,14 @@ class Msg extends React.Component {
 
 export default () => (
   <React.Fragment>
-    <nav className='msg-navbar'>
+    {/* <nav className='msg-navbar'>
       <Link to='/'>
         Inicio
       </Link>
-      <Link to='/msg/1'>
-        First Comment
-      </Link>
-    </nav>
+    </nav> */}
     <Router>
-      <Msg path='/' />
-      <MyCustomMessage path=':message' />
+      <Msg path='/*' />
+      <MyCustomMessage path='/msg/:message' />
     </Router>
   </React.Fragment>
 )

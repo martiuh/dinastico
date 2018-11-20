@@ -20,12 +20,12 @@ const clientProduction = {
   mode: 'production',
   optimization: {
     splitChunks: {
-        cacheGroups: {
-          vendors: {
-             test: /[\\/]node_modules[\\/]/,
-             priority: -10,
-             filename: '[name]-[chunkhash].js'
-          }
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          filename: '[name]-[chunkhash].js'
+        }
       }
     },
     minimizer: [

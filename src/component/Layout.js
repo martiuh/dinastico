@@ -1,55 +1,44 @@
 import React from 'react'
 import { Link, navigate } from '@reach/router'
-import universal from 'react-universal-component'
 
+import { getPage } from '../utils'
 import './Layout.css'
 // import EstaticoLink from './EstaticoLink'
 
+class CustomLink extends React.Component {
+  render() {
+    const { to, onClick, ...props } = this.props
+    console.log({ to, props })
+    return(
+      <Link
+        to={to}
+        onClick={event => {
+          event.preventDefault()
+          alert(getPage(to))
+          onClick && onClick(event)
+          navigate(to)
+        }}
+        {...props}
+      />
+    )
+  }
+}
 export default ({ children }) => (
   <header>
     <nav className='navbar'>
-      <Link to='/'>
-        Home
-      </Link>
-      <a
+      <CustomLink to='/'> Home </CustomLink>
+      <CustomLink
         to='/hello'
-        onClick={() => {
-          const request = '/hello'
-          const nextCompo = universal(import(`${__dirname}/../pages${request}`))
-          nextCompo.preload()
-            .then(loaded => {
-              navigate(request)
-            })
-            .catch(err => console.log(err))
-        }}
       >
         Hello
-      </a>
+      </CustomLink>
       <a
-        to='/world'
-        onClick={() => {
-          const request = '/world'
-          const nextCompo = universal(import(`${__dirname}/../pages${request}`))
-          nextCompo.preload()
-            .then(loaded => {
-              navigate(request)
-            })
-            .catch(err => console.log(err))
-        }}
+        href='/world'
       >
         World
       </a>
       <a
-        to='/msg'
-        onClick={() => {
-          const request = 'msg'
-          const nextCompo = universal(import(`${__dirname}/../pages/${request}`))
-          nextCompo.preload()
-            .then(loaded => {
-              navigate('/msg')
-            })
-            .catch(err => console.log(err))
-        }}
+        href='/msg'
       >
         Msg
       </a>

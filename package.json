@@ -52,6 +52,7 @@
   "dependencies": {
     "@babel/node": "^7.0.0",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
@@ -61,9 +62,10 @@
     "prod": "yarn build && yarn serve",
     "heroku-start": "node server.js",
     "clean": "rimraf public",
-    "clean:routes": "rimraf .routes", 
-    "build": "yarn clean && yarn build:routes && yarn build:client && yarn build:estatico",
-    "build:routes": "yarn clean:routes && cross-env NODE_ENV=production webpack --config estatico.routes.webpack.js && node .routes/buildRoutes.js",
+    "clean:chunks": "rimraf .routes && mkdir .routes",
+    "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:estatico",
+    "build:chunks": "yarn clean:chunks && babel-node estatico.build-chunks.js",
+    "build:routes": "webpack --config estatico.routes.webpack.js && node .routes/buildRoutes",
     "build:client": "cross-env NODE_ENV=production webpack --mode production --colors",
     "build:estatico": "cross-env NODE_ENV=production webpack --mode production --config estatico.webpack.js",
     "serve": "cross-env NODE_ENV=production node server.js",

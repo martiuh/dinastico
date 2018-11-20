@@ -22,7 +22,6 @@ export default function (locals) {
     const fileIndex = chunks.indexOf(chunkName)
     if (fileIndex >= 0) {
       const files = estaticoStats[chunk]
-      console.log({chunkName, files})
       if (Array.isArray(files)) {
         return files.forEach(F => chunkFiles.push(F))
       }
@@ -75,7 +74,7 @@ export default function (locals) {
   Object.keys(routes).forEach(P => {
     pages = {
       ...pages,
-      [P]: manifest[routes[P]]
+      [P]: jsArr[0]
     }
     return null
   })
@@ -85,7 +84,7 @@ export default function (locals) {
   const Component = require(`./pages/${fileName}`).default
   const App = () => (
     <ServerLocation url={url}>
-      <Router>
+      <Router baseuri='/'>
         <Component path='/*' />
       </Router>
     </ServerLocation>

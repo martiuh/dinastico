@@ -22,7 +22,7 @@ const UniversalComponent = universal(({ page }) => import(`${__dirname}/pages/${
 const UniversalIndex = universal(props => import(`${__dirname}/pages/index`), universalOpts)
 const UniversalPage = ({ path }) => <UniversalComponent path={path} page={path.split('/')[0]} />
 
-const _404 = () => (
+const FourOFour = () => (
   <div>
     404 Not Found
     <Link to='/'>Go to home</Link>
@@ -37,7 +37,7 @@ export default function Layout({ pages }) {
       <UniversalPage path='world/*' />
       <UniversalPage path='msg/*' />
       <UniversalPage path='pendientes' />
-      <_404 path='*' />
+      <FourOFour path='*' />
     </Router>
   )
 
