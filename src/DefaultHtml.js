@@ -3,7 +3,7 @@ export default (string, { Pages, js, css }) => {
   const jsString = js.map(J => `<script src="${J}" type="text/javascript" async=""></script>`).join('\n')
   const cssString = css.map(C => `<link href="${C}" rel="stylesheet" />`)
 
-  return(`<!DOCTYPE html>
+  return (`<!DOCTYPE html>
   <html lang="es" dir="ltr">
     <head>
       <meta charset="utf-8">

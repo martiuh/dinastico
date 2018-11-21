@@ -44,8 +44,7 @@ export default class MyCustomMessage extends React.Component {
       <main>
         <Link to='/msg'>
           Back
-          {' '}
-          {'<--'}
+          {`<--`}
         </Link>
         {!fetched ? <CommentCard /> : (
           <React.Fragment>

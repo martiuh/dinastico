@@ -1,10 +1,6 @@
 import React from 'react'
-import { hydrate } from 'react-dom'
 import { Link, Router } from '@reach/router'
-import axios from 'axios'
 import universal from 'react-universal-component'
-
-import { isServer } from './utils'
 
 const Loading = () => <h1>...</h1>
 const ErrorComponent = () => <h1>Error :(</h1>
@@ -15,11 +11,9 @@ const universalOpts = {
   minDelay: 0
 }
 
-const pagesFolder = pge => `${__dirname}/pages/${pge}`
-
 const UniversalComponent = universal(({ page }) => import(`${__dirname}/pages/${page}`), universalOpts)
 
-const UniversalIndex = universal(props => import(`${__dirname}/pages/index`), universalOpts)
+const UniversalIndex = universal(() => import(`${__dirname}/pages/index`), universalOpts)
 const UniversalPage = ({ path }) => <UniversalComponent path={path} page={path.split('/')[0]} />
 
 const FourOFour = () => (
@@ -29,7 +23,7 @@ const FourOFour = () => (
   </div>
 )
 
-export default function Layout({ pages }) {
+export default function Layout() {
   const EstaticoRouter = () => (
     <Router>
       <UniversalIndex path='/' />

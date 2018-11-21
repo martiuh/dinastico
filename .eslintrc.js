@@ -139,6 +139,7 @@ module.exports = {
         ignoreTemplateLiterals: true
       }
     ],
+    'react/jsx-one-expression-per-line': 0,
     'react/sort-comp': [
       2,
       {

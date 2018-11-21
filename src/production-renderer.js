@@ -19,7 +19,10 @@ if (!thePage) {
   const startsWith = pathname.split('/').filter(item => item !== '')[0]
   thePage = asyncPages[getPage(`${startsWith}/`)]
 }
+
 if (thePage && thePage.load) {
+  const compos = Object.values(asyncPages)
+  console.log(compos)
   thePage.load()
     .then(PreComponent => {
       const Compo = PreComponent.default
