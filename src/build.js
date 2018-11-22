@@ -80,10 +80,11 @@ export default function (locals) {
   const url = locals.path
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const Component = require(`./pages/${fileName}`).default
+  const Url = url === '/index' ? '/' : `${url}/*`
   const App = () => (
     <ServerLocation url={url}>
       <Router baseuri='/'>
-        <Component path='/*' />
+        <Component path={url === '/msg/message' ? `/msg/*` : `${Url}`} />
       </Router>
     </ServerLocation>
   )

@@ -51,8 +51,8 @@ export default () => (
       </Link>
     </nav> */}
     <Router>
-      <Msg path='/*' />
-      <MyCustomMessage path='msg/:message' />
+      <Msg path='/' />
+      <MyCustomMessage path=':message' />
     </Router>
   </React.Fragment>
 )

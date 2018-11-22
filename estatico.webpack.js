@@ -25,6 +25,7 @@ routes = {
 }
 
 paths.push('/msg/message')
+// paths.push('/world/worlded')
 
 module.exports = function estaticoWebpack(env) {
   const config = {
