@@ -2,14 +2,12 @@ import React from 'react'
 import { Link, Router } from '@reach/router'
 import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
 
-const YouWorlded = ({ worlded }) => {
-  return (
-    <React.Fragment>
-      <h1>You worlded {worlded || 'X'}</h1>
-      <Link to='/world'>Go back to world 0!</Link>
-    </React.Fragment>
-  )
-}
+const YouWorlded = ({ message }) => (
+  <React.Fragment>
+    <h1>You worlded {message || 'X'}</h1>
+    <Link to='/world'>Go back to world 0!</Link>
+  </React.Fragment>
+)
 
 class World extends React.Component {
   constructor(props) {
@@ -18,6 +16,7 @@ class World extends React.Component {
       count: 0
     }
   }
+
   render() {
     const { count } = this.state
     return (
@@ -37,7 +36,7 @@ class World extends React.Component {
 export default () => (
   <Router>
     <World path='/*'>
-      <YouWorlded path='/worlded/:worlded' />
+      <YouWorlded path='/worlded/:message' />
     </World>
   </Router>
 )

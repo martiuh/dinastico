@@ -52,7 +52,7 @@ export default () => (
     </nav> */}
     <Router>
       <Msg path='/*' />
-      <MyCustomMessage path='/msg/:message' />
+      <MyCustomMessage path='msg/:message' />
     </Router>
   </React.Fragment>
 )
