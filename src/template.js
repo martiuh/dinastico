@@ -12,7 +12,7 @@ export default (string, { pages, js, css }) => {
       ${cssString}
     </head>
     <body>
-      <div id="__estatico">
+      <div id="__dinastico__">
         ${string}
       </div>
       ${jsString}

@@ -2,11 +2,11 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
 
-import { assetsByChunkName as estaticoStats } from '../public/stats.json'
+import { assetsByChunkName as dinasticoStats } from '../public/stats.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
 import { jsMatch, cssMatch } from './utils'
-// import EstaticoRoutes from './EstaticoRoutes'
+// import dinasticoRoutes from './dinasticoRoutes'
 // 1. Get Pages
 // 2. Make routes according to filename
 
@@ -15,11 +15,11 @@ export default function (locals) {
   const fileName = routes[locals.path] // The name of the component
   const chunkName = fileName.split('.js')[0]
   let chunkFiles = []
-  Object.keys(estaticoStats).map(chunk => {
+  Object.keys(dinasticoStats).map(chunk => {
     const chunks = chunk.split('-')
     const fileIndex = chunks.indexOf(chunkName)
     if (fileIndex >= 0) {
-      const files = estaticoStats[chunk]
+      const files = dinasticoStats[chunk]
       if (Array.isArray(files)) {
         return files.forEach(F => chunkFiles.push(F))
       }
@@ -59,7 +59,7 @@ export default function (locals) {
   chunkFiles = chunkFiles.filter(files => !!files)
   const { js, css } = organizeChunks(chunkFiles)
   const addPath = value => `/${value}`
-  const bundleChunks = organizeChunks(estaticoStats.bundle) // webpack bundle
+  const bundleChunks = organizeChunks(dinasticoStats.bundle) // webpack bundle
   let jsArr = [...js, ...bundleChunks.js]
   jsArr = jsArr.filter(value => !!value)
   jsArr = jsArr.map(addPath)

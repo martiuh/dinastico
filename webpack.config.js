@@ -13,7 +13,6 @@ const { NODE_ENV } = process.env
 const isDev = NODE_ENV === 'development'
 
 const baseConfig = (env, envConfig) => {
-  const estaticoFilename = isDev ? 'dev' : 'build'
   const shared = sharedConfig(env)
   const config = {
     ...shared,

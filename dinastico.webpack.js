@@ -27,12 +27,12 @@ routes = {
 paths.push('/msg/message')
 // paths.push('/world/worlded')
 
-module.exports = function estaticoWebpack(env) {
+module.exports = function dinasticoWebpack(env) {
   const config = {
     mode: 'production',
     entry: path.resolve(__dirname, 'src', 'build'),
     output: {
-      filename: '.estatico__hidden.js',
+      filename: '.dinastico__hidden.js',
       path: path.join(__dirname, 'public'),
       libraryTarget: 'umd',
       globalObject: 'this'

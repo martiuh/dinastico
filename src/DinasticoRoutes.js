@@ -24,7 +24,7 @@ const FourOFour = () => (
 )
 
 export default function Layout() {
-  const EstaticoRouter = () => (
+  const DinasticoRouter = () => (
     <Router>
       <UniversalIndex path='/' />
       <UniversalPage path='hello' />
@@ -37,7 +37,7 @@ export default function Layout() {
 
   return (
     <React.Fragment>
-      <EstaticoRouter />
+      <DinasticoRouter />
     </React.Fragment>
   )
 }

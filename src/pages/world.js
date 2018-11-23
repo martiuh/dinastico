@@ -2,9 +2,9 @@ import React from 'react'
 import { Link, Router } from '@reach/router'
 import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
 
-const YouWorlded = ({ message }) => (
+const YouWorlded = ({ worlded }) => (
   <React.Fragment>
-    <h1>You worlded {message || 'X'}</h1>
+    <h1>You worlded {worlded || 'X'}</h1>
     <Link to='/world'>Go back to world 0!</Link>
   </React.Fragment>
 )
@@ -22,7 +22,7 @@ class World extends React.Component {
     return (
       <main>
         <h1
-          onClick={() => this.setState({ count: count + 1})}
+          onClick={() => this.setState({ count: count + 1 })}
         >
             World +{count}
         </h1>
@@ -33,9 +33,23 @@ class World extends React.Component {
   }
 }
 
+const America = ({ children }) => (
+  <div>
+    <h1>Continent Americano</h1>
+    {children}
+  </div>
+)
+
+const Mexico = () => (
+  <h1>Viva México!!!</h1>
+)
+
 export default () => (
   <Router>
     <World path='/' />
-    <YouWorlded path=':message' />
+    <YouWorlded path=':worlded' />
+    <America path='america'>
+      <Mexico path='mexico' />
+    </America>
   </Router>
 )

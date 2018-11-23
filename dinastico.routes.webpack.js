@@ -5,14 +5,14 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const sharedConfig = require('./webpack.shared')
 
-module.exports = function estaticoWebpack(env) {
+module.exports = function dinasticoWebpack(env) {
   const config = {
     target: 'node',
     mode: 'production',
-    entry: path.resolve(__dirname, 'estatico.router.js'),
+    entry: path.resolve(__dirname, 'dinastico.router.js'),
     output: {
       filename: 'buildRoutes.js',
-      path: path.join(__dirname, '.routes'),
+      path: path.join(__dirname, '.routes')
     },
     module: {
       rules: [

@@ -11,11 +11,11 @@ export default (string, { Pages, js, css }) => {
       ${cssString}
     </head>
     <body>
-      <div id="__estatico">
+      <div id="__dinastico__">
         ${string}
       </div>
       ${jsString}
-      <script>window.ESTATICO_PAGES=${JSON.stringify(Pages)}</script>
+      <script>window.DINASTICO_PAGES=${JSON.stringify(Pages)}</script>
     </body>
   </html>
   `)

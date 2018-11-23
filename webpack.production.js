@@ -1,11 +1,8 @@
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { StatsWriterPlugin } = require('webpack-stats-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const config = require('./engine/config')
-const { addAsset, getManifest } = require('./engine/assets')
 
 const clientProduction = {
   devtool: 'source-map',
@@ -33,9 +30,6 @@ const clientProduction = {
     ]
   },
   plugins: [
-    new ManifestPlugin({
-      fileName: config.manifestFileName,
-    }),
     new StatsWriterPlugin()
     // new HtmlPlugin({
     //   inject: true,

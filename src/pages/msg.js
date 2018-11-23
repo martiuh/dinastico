@@ -45,11 +45,11 @@ class Msg extends React.Component {
 
 export default () => (
   <React.Fragment>
-    {/* <nav className='msg-navbar'>
+    <nav className='msg-navbar'>
       <Link to='/'>
         Inicio
       </Link>
-    </nav> */}
+    </nav>
     <Router>
       <Msg path='/' />
       <MyCustomMessage path=':message' />

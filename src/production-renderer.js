@@ -9,7 +9,7 @@ import { getPage } from './utils'
 window.asyncPages = asyncPages
 
 let { pathname } = window.location
-const estaticoRoot = document.getElementById('__estatico')
+const dinasticoRoot = document.getElementById('__dinastico__')
 
 pathname = pathname === '/' ? '/index/' : pathname
 
@@ -29,12 +29,12 @@ if (thePage && thePage.load) {
     .then(PreComponent => {
       const Compo = PreComponent.default
       let renderPathName = startsWith ? `${startsWith}*` : `${pathname}*`
-      renderPathName = '/index/*' ? '/' : renderPathName
+      renderPathName = renderPathName === '/index/*' ? '/' : renderPathName
       return hydrate(
         <Router>
           <Compo path={renderPathName} />
         </Router>,
-        estaticoRoot
+        dinasticoRoot
       )
     })
 }

@@ -1,9 +1,9 @@
 {
-  "name": "estatico",
-  "version": "0.2.1",
+  "name": "dinastico",
+  "version": "0.2.2",
   "description": "Making a static React App",
   "main": "index.js",
-  "author": "Martiuh González",
+  "author": "Martiuh González <martiuh@gmail.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
@@ -64,11 +64,11 @@
     "heroku-start": "node server.js",
     "clean": "rimraf public",
     "clean:chunks": "rimraf .routes && mkdir .routes",
-    "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:estatico",
-    "build:chunks": "yarn clean:chunks && babel-node estatico.build-chunks.js",
-    "build:routes": "webpack --config estatico.routes.webpack.js && node .routes/buildRoutes",
+    "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:dinastico",
+    "build:chunks": "yarn clean:chunks && babel-node dinastico.build-chunks.js",
+    "build:routes": "webpack --config dinastico.routes.webpack.js && node .routes/buildRoutes",
     "build:client": "cross-env NODE_ENV=production webpack --mode production --colors",
-    "build:estatico": "cross-env NODE_ENV=production webpack --mode production --config estatico.webpack.js",
+    "build:dinastico": "cross-env NODE_ENV=production webpack --mode production --config dinastico.webpack.js",
     "serve": "cross-env NODE_ENV=production node server.js",
     "heroku-postbuild": "yarn build"
   }
