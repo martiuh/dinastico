@@ -31,7 +31,7 @@ Pages.forEach((P, index) => {
   const chunkName = PagesNames[index]
   const routeName = fileRouter[chunkName]
 
-  const childrenLogger = (obj, route, paths = {}) => {
+  const routeMaker = (obj, route, paths = {}) => {
     // If the component have props
     /*
       1. If it has props.path then it's a Router object meaning it's the main Route.
@@ -41,15 +41,15 @@ Pages.forEach((P, index) => {
     if (obj.children) {
       if (Array.isArray(obj.children)) {
         obj.children.forEach(child => {
-          paths = childrenLogger(child, route, paths)
+          paths = routeMaker(child, route, paths)
         })
       }
       else {
-        paths = childrenLogger(obj.children, route, paths)
+        paths = routeMaker(obj.children, route, paths)
       }
     }
 
-    const propLogger = path => {
+    const buildPath = path => {
       if (path === '/') {
         return null
       }
@@ -65,23 +65,24 @@ Pages.forEach((P, index) => {
     if (obj.props) {
       if (Array.isArray(obj.props)) {
         obj.props.forEach(prop => {
-          paths = childrenLogger(prop, route, paths)
+          paths = routeMaker(prop, route, paths)
         })
       }
       else if (obj.props.path && !obj.props.children) {
-        propLogger(obj.props.path)
+        buildPath(obj.props.path)
       }
+
       else if (obj.props.path && obj.props.children) {
         paths = {
           ...paths,
           [route]: {
             ...paths[route],
-            ...childrenLogger(obj.props, obj.props.path, {})
+            ...routeMaker(obj.props, obj.props.path, {})
           }
         }
       }
       else {
-        paths = childrenLogger(obj.props, route, paths)
+        paths = routeMaker(obj.props, route, paths)
       }
     }
 
@@ -89,7 +90,7 @@ Pages.forEach((P, index) => {
   }
 
   if (Component.props.children) {
-    const componentRoutes = childrenLogger(Component, routeName, {})
+    const componentRoutes = routeMaker(Component, routeName, {})
     if (!componentRoutes[routeName]) {
       fullRouter = Object.assign({}, fullRouter, { [routeName]: true })
     }
