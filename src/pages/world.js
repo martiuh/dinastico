@@ -47,9 +47,9 @@ const Mexico = () => (
 export default () => (
   <Router>
     <World path='/' />
-    <YouWorlded path=':worlded' />
     <America path='america'>
       <Mexico path='mexico' />
     </America>
+    <YouWorlded path=':worlded' />
   </Router>
 )

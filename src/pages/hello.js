@@ -11,6 +11,7 @@ export default class Hello extends React.Component {
   }
 
   changeName = () => this.setState({ nombre: 'Tonadioro Pérez' })
+
   render() {
     return (
       <Layout>

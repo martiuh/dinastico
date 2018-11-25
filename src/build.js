@@ -6,14 +6,15 @@ import { assetsByChunkName as dinasticoStats } from '../public/stats.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
 import { jsMatch, cssMatch } from './utils'
+import * as syncChunks from '../.routes/sync-chunks'
+import dinasticoRoutes from '../.routes/dinastico-routes.json'
 // import dinasticoRoutes from './dinasticoRoutes'
 // 1. Get Pages
 // 2. Make routes according to filename
 
 export default function (locals) {
   const { routes } = locals
-  const fileName = routes[locals.path] // The name of the component
-  const chunkName = fileName.split('.js')[0]
+  const chunkName = routes[locals.path] // The name of the component
   let chunkFiles = []
   Object.keys(dinasticoStats).map(chunk => {
     const chunks = chunk.split('-')
@@ -79,12 +80,13 @@ export default function (locals) {
 
   const url = locals.path
   // eslint-disable-next-line import/no-dynamic-require, global-require
-  const Component = require(`./pages/${fileName}`).default
-  const Url = url === '/index' ? '/' : `${url}/*`
+  const Component = syncChunks[chunkName].default
+  let Url = url === '/index' ? '/' : `${url}/*`
+  Url = dinasticoRoutes[url] ? dinasticoRoutes[url].routeName : Url
   const App = () => (
     <ServerLocation url={url}>
       <Router baseuri='/'>
-        <Component path={url === '/msg/message' ? `/msg/*` : `${Url}`} />
+        <Component path={Url} />
       </Router>
     </ServerLocation>
   )

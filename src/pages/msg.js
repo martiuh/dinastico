@@ -43,6 +43,10 @@ class Msg extends React.Component {
   }
 }
 
+function Privacidad() {
+  return <h1>Privacidad es importante</h1>;
+}
+
 export default () => (
   <React.Fragment>
     <nav className='msg-navbar'>
@@ -52,6 +56,7 @@ export default () => (
     </nav>
     <Router>
       <Msg path='/' />
+      <Privacidad path='privacidad' />
       <MyCustomMessage path=':message' />
     </Router>
   </React.Fragment>

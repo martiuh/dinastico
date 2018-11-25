@@ -7,25 +7,11 @@ const webpack = require('webpack')
 const { readdirSync } = require('fs')
 const webpackMerge = require('webpack-merge')
 
+const routes = require('./.routes/routes.json')
+
 const sharedConfig = require('./webpack.shared')
 
-const pagesPath = path.resolve(__dirname, 'src', 'pages')
-const pages = readdirSync(pagesPath)
-let routes = {}
-const paths = pages.map(P => {
-  const routeName = `/${P.split('.js')[0]}`
-  const indexName = P !== 'index.js' ? routeName : '/'
-  routes[indexName] = P
-  return indexName
-})
-
-routes = {
-  ...routes,
-  '/msg/message': 'msg.js'
-}
-
-paths.push('/msg/message')
-// paths.push('/world/worlded')
+const paths = Object.keys(routes)
 
 module.exports = function dinasticoWebpack(env) {
   const config = {
