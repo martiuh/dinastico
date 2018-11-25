@@ -17,9 +17,9 @@ const pageName = getPage(pathname)
 let thePage = asyncPages[pageName]
 let startsWith = null
 if (!thePage) {
-  startsWith = pathname.split('/').filter(item => item !== '')[0]
+  [startsWith] = pathname.split('/').filter(item => item !== '')
   startsWith = `${startsWith}/`
-  thePage = asyncPages[getPage(startsWith)]
+  thePage = window.asyncPages[getPage(startsWith)]
 }
 
 if (thePage && thePage.load) {

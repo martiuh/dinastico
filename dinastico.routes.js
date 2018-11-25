@@ -20,22 +20,21 @@ Pages.forEach((P, index) => {
   if (!Page.prototype) {
     return null
   }
-
   if (Page.prototype.render) {
     Component = new Page()
+    Component = Component.render()
   }
   else {
     Component = Page()
   }
-
-  if (!Component || !Component.props) {
+  if (!Component) {
     return null
   }
 
   const chunkName = PagesNames[index]
   const routeName = fileRouter[chunkName]
 
-  const routeMaker = (obj, route, routeObj = {}, parentRoute) => {
+  const routeMaker = (obj, route, routeObj = {}) => {
     // If the component have props
     /*
       1. If it has props.path then it's a Router object meaning it's the main Route.
@@ -92,11 +91,10 @@ Pages.forEach((P, index) => {
     return routeObj
   }
 
+  const noIndexRoute = routeName === 'index/' ? '/' : routeName
   if (Component.props.children) {
-    const componentRoutes = routeMaker(Component, routeName, {}, routeName)
-    // fullRouter = Object.assign({}, fullRouter, componentRoutes)
+    const componentRoutes = routeMaker(Component, routeName, {})
     if (!componentRoutes[routeName]) {
-      const noIndexRoute = routeName === 'index/' ? '/' : routeName
       fullRouter = Object.assign({}, fullRouter, { [noIndexRoute]: chunkName })
     }
     else {
@@ -105,5 +103,6 @@ Pages.forEach((P, index) => {
   }
 })
 
-fs.writeFileSync(path.join(process.cwd(), '.routes', 'routes.json'), JSON.stringify(fullRouter))
-fs.writeFileSync(path.join(process.cwd(), '.routes', 'dinastico-routes.json'), JSON.stringify(dinasticoRouter))
+const currentDir = process.cwd()
+fs.writeFileSync(path.join(currentDir, '.routes', 'routes.json'), JSON.stringify(fullRouter))
+fs.writeFileSync(path.join(currentDir, '.routes', 'dinastico-routes.json'), JSON.stringify(dinasticoRouter))

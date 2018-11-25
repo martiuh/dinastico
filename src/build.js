@@ -81,7 +81,7 @@ export default function (locals) {
   const url = locals.path
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const Component = syncChunks[chunkName].default
-  let Url = url === '/index' ? '/' : `${url}/*`
+  let Url = url === '/index' ? '/' : url
   Url = dinasticoRoutes[url] ? dinasticoRoutes[url].routeName : Url
   const App = () => (
     <ServerLocation url={url}>
