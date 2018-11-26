@@ -1,4 +1,5 @@
 const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
+const path = require('path')
 
 module.exports = function webpackShared(env) {
   const config = {
@@ -18,7 +19,10 @@ module.exports = function webpackShared(env) {
       ]
     },
     resolve: {
-      extensions: ['.js', '.css', '.jsx']
+      extensions: ['.js', '.css', '.jsx'],
+      alias: {
+        'dinastico-link': path.resolve(__dirname, 'src/Link')
+      }
     }
   }
   return config

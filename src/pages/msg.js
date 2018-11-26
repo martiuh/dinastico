@@ -1,6 +1,7 @@
 import React from 'react'
-import { Router, Link } from '@reach/router'
+import { Router } from '@reach/router'
 import axios from 'axios'
+import Link from 'dinastico-link'
 
 import MyCustomMessage from '../component/MyCustomMessage'
 import CommentCard from '../component/CommentCard'

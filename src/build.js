@@ -8,26 +8,16 @@ import template from './template'
 import { jsMatch, cssMatch } from './utils'
 import * as syncChunks from '../.routes/sync-chunks'
 import dinasticoRoutes from '../.routes/dinastico-routes.json'
+import fullRoutes from '../.routes/routes.json'
+
 // import dinasticoRoutes from './dinasticoRoutes'
 // 1. Get Pages
 // 2. Make routes according to filename
 
 export default function (locals) {
   const { routes } = locals
-  const chunkName = routes[locals.path] // The name of the component
-  let chunkFiles = []
-  Object.keys(dinasticoStats).map(chunk => {
-    const chunks = chunk.split('-')
-    const fileIndex = chunks.indexOf(chunkName)
-    if (fileIndex >= 0) {
-      const files = dinasticoStats[chunk]
-      if (Array.isArray(files)) {
-        return files.forEach(F => chunkFiles.push(F))
-      }
-      return chunkFiles.push(files)
-    }
-    return false
-  })
+  const chunkName = fullRoutes[locals.path] // The name of the component
+  const chunkFiles = dinasticoStats[chunkName]
 
   const organizeChunks = arr => {
     const js = []
@@ -57,7 +47,6 @@ export default function (locals) {
     return { js, css }
   }
 
-  chunkFiles = chunkFiles.filter(files => !!files)
   const { js, css } = organizeChunks(chunkFiles)
   const addPath = value => `/${value}`
   const bundleChunks = organizeChunks(dinasticoStats.bundle) // webpack bundle
@@ -79,7 +68,6 @@ export default function (locals) {
   })
 
   const url = locals.path
-  // eslint-disable-next-line import/no-dynamic-require, global-require
   const Component = syncChunks[chunkName].default
   let Url = url === '/index' ? '/' : url
   Url = dinasticoRoutes[url] ? dinasticoRoutes[url].routeName : Url
@@ -90,6 +78,7 @@ export default function (locals) {
       </Router>
     </ServerLocation>
   )
+
   const appString = renderToString(<App />)
   return template(appString, { pages, js: jsArr, css: cssArr })
 }

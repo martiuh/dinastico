@@ -1,33 +1,16 @@
 import React from 'react'
-import { Link, navigate } from '@reach/router'
+import Link from 'dinastico-link'
 
-import { getPage } from '../utils'
 import './Layout.css'
 // import EstaticoLink from './EstaticoLink'
-
-function CustomLink(props) {
-  const { to, onClick, ...rest } = props
-  return (
-    <Link
-      to={to}
-      onClick={event => {
-        event.preventDefault()
-        console.log(getPage(to))
-        onClick && onClick(event)
-        navigate(to)
-      }}
-      {...rest}
-    />
-  )
-}
 
 export default ({ children }) => (
   <header>
     <nav className='navbar'>
-      <CustomLink to='/'>Home</CustomLink>
-      <CustomLink to='/hello'>Hello</CustomLink>
-      <a href='/world'>World</a>
-      <a href='/msg'>Msg</a>
+      <Link to='/'>Home</Link>
+      <Link to='/hello'>Hello</Link>
+      <Link to='/world'>World</Link>
+      <Link to='/msg'>Msg</Link>
     </nav>
     {children}
   </header>

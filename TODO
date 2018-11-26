@@ -1,4 +1,3 @@
 - Programatically build a Router from the src/pages folder
-- Support page folder to export Routes as Routers, after that build a folder inside the parent directory in order to allow url parameters
 - Build a file system for static reachable urls and a .htaccess file to support url parameters
 - Custom Async Component (with preload)

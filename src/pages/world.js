@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link, Router } from '@reach/router'
+import { Router } from '@reach/router'
+import Link from 'dinastico-link'
+
 import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
 
 const YouWorlded = ({ worlded }) => (

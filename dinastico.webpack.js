@@ -58,7 +58,7 @@ module.exports = function dinasticoWebpack(env) {
     ]
   }
 
-  let shared = sharedConfig(env)
-  shared.module.rules = shared.module.rules.filter(({ test }) => String(test) !== String(/\.css$/) )
+  const shared = sharedConfig(env)
+  shared.module.rules = shared.module.rules.filter(({ test }) => String(test) !== String(/\.css$/))
   return webpackMerge.smart(shared, config)
 }

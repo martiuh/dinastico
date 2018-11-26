@@ -15,6 +15,9 @@ module.exports = {
       onlyFilesWithFlowAnnotation: true
     },
     'import/resolver': {
+      alias: [
+        ['dinastico-link', './src/Link/index.jsx']
+      ],
       node: {
         extensions: ['.js', '.json']
       }
