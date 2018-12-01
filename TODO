@@ -1,3 +1,0 @@
-- Programatically build a Router from the src/pages folder
-- Build a file system for static reachable urls and a .htaccess file to support url parameters
-- Custom Async Component (with preload)

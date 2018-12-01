@@ -1,20 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link, Router } from '@reach/router'
-import universal from 'react-universal-component'
 
-const Loading = () => <h1>...</h1>
-const ErrorComponent = () => <h1>Error :(</h1>
-
-const universalOpts = {
-  loading: Loading,
-  error: ErrorComponent,
-  minDelay: 0
-}
-
-const UniversalComponent = universal(({ page }) => import(`${__dirname}/pages/${page}`), universalOpts)
-
-const UniversalIndex = universal(() => import(`${__dirname}/pages/index`), universalOpts)
-const UniversalPage = ({ path }) => <UniversalComponent path={path} page={path.split('/')[0]} />
+import syncChunks from '../.routes/sync-chunks'
+import fileRouter from '../.routes/file-router'
+import buildSyncRouter from './utils/buildSyncRouter'
 
 const FourOFour = () => (
   <div>
@@ -23,21 +12,41 @@ const FourOFour = () => (
   </div>
 )
 
+// Here I only get where I shall use the path/* pattern
+const syncChunksArr = Object.values(syncChunks)
+const Chunknames = Object.keys(syncChunks)
+
 export default function Layout() {
   const DinasticoRouter = () => (
     <Router>
-      <UniversalIndex path='/' />
-      <UniversalPage path='hello' />
-      <UniversalPage path='world/*' />
-      <UniversalPage path='msg/*' />
-      <UniversalPage path='pendientes' />
+      {syncChunksArr.map((sync, index) => {
+        // TODO: Make a Component Base Router
+        const Comp = sync.default
+        let defaultPath = fileRouter[Chunknames[index]]
+        defaultPath = defaultPath === 'index/' ? '/' : defaultPath
+        let Page = ''
+        if (Comp.prototype.render) {
+          Page = new Comp() //
+          Page = Page.render()
+        }
+        else {
+          Page = Comp()
+        }
+        if (Page.props.children) {
+          // I only need to know if the component children have a path prop
+          const newPath = buildSyncRouter(Page.props, defaultPath)
+          return <Comp key={newPath || defaultPath} path={newPath || defaultPath} />
+        }
+        return <Comp key={defaultPath} path={defaultPath} />
+      })}
       <FourOFour path='*' />
     </Router>
   )
 
+  const MemoRouter = memo(DinasticoRouter)
   return (
     <React.Fragment>
-      <DinasticoRouter />
+      <MemoRouter />
     </React.Fragment>
   )
 }

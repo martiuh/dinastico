@@ -17,7 +17,7 @@ export default class Hello extends React.Component {
       <Layout>
         <main style={{ width: '100vw', backgroundColor: 'red' }}>
           <h1>hola a todos {this.state.nombre}</h1>
-          <button onClick={this.changeName}> Change Name </button>
+          <button type='button' aria-label='Change name' onClick={this.changeName}> Change Name </button>
           <GreetingAmongWorlds />
         </main>
       </Layout>

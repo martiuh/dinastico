@@ -9,7 +9,7 @@ import * as fileRouter from './.routes/file-router'
 const Pages = Object.values(syncChunks)
 const PagesNames = Object.keys(syncChunks)
 let fullRouter = {}
-const dinasticoRouter = {}
+let dinasticoRouter = {}
 
 Pages.forEach((P, index) => {
   if (!P.default) {
@@ -34,20 +34,20 @@ Pages.forEach((P, index) => {
   const chunkName = PagesNames[index]
   const routeName = fileRouter[chunkName]
 
-  const routeMaker = (obj, route, routeObj = {}) => {
+  const routeMaker = (obj, currentRoute, routeObj = {}, dina = false) => {
     // If the component have props
     /*
-      1. If it has props.path then it's a Router object meaning it's the main Route.
+      1. If it has props.path then it's a Router object meaning it's the main currentRoute.
       2. If it has props.children then it could have another Router underneath, making the component a 'parent'
     */
     if (obj.children) {
       if (Array.isArray(obj.children)) {
         obj.children.forEach(child => {
-          routeObj = routeMaker(child, route, routeObj)
+          routeObj = routeMaker(child, currentRoute, routeObj, dina)
         })
       }
       else {
-        routeObj = routeMaker(obj.children, route, routeObj)
+        routeObj = routeMaker(obj.children, currentRoute, routeObj, dina)
       }
     }
 
@@ -57,34 +57,42 @@ Pages.forEach((P, index) => {
       const startsWithDots = string => /^:/.test(string)
 
       const hasDots = startsWithDots(path)
-      route = finalSlash(route) ? route : `${route}/`
+      currentRoute = finalSlash(currentRoute) ? currentRoute : `${currentRoute}/`
       path = finalSlash(path) ? path : path.substr(0, path.length)
       path = hasDots ? `${path.substr(1)}` : path
       path = path === '/' ? '' : `${path}/`
-      routeObj[`${route}${path}`] = chunkName
-      dinasticoRouter[`${route}${path}`] = {
-        routeName: `${routeName}*`,
-        dynamic: hasDots,
-        directory: `${route}${path}`
+      if (dina === 'router') {
+        routeObj[`${routeName}*`] = true
+      }
+      else if (dina) {
+        routeObj[`${currentRoute}${path}`] = {
+          routeName: `${routeName}*`,
+          dynamic: hasDots,
+          directory: `${currentRoute}${path}`
+        }
+      }
+      else {
+        routeObj[`${currentRoute}${path}`] = chunkName
       }
     }
 
     if (obj.props) {
       if (Array.isArray(obj.props)) {
         obj.props.forEach(prop => {
-          routeObj = routeMaker(prop, route, routeObj)
+          routeObj = routeMaker(prop, currentRoute, routeObj, dina)
         })
       }
+
       else if (obj.props.path && !obj.props.children) {
         buildPath(obj.props.path)
       }
 
       else if (obj.props.path && obj.props.children) {
         buildPath(obj.props.path)
-        routeObj = routeMaker(obj.props, `${route}${obj.props.path}`, routeObj)
+        routeObj = routeMaker(obj.props, `${currentRoute}${obj.props.path}`, routeObj, dina)
       }
       else {
-        routeObj = routeMaker(obj.props, route, routeObj)
+        routeObj = routeMaker(obj.props, currentRoute, routeObj, dina)
       }
     }
 
@@ -94,15 +102,18 @@ Pages.forEach((P, index) => {
   const noIndexRoute = routeName === 'index/' ? '/' : routeName
   if (Component.props.children) {
     const componentRoutes = routeMaker(Component, routeName, {})
+    const dinaRouter = routeMaker(Component, routeName, {}, true)
+    // console.log(routeMaker(Component, routeName, {}, 'router'))
     if (!componentRoutes[routeName]) {
       fullRouter = Object.assign({}, fullRouter, { [noIndexRoute]: chunkName })
     }
     else {
+      dinasticoRouter = Object.assign({}, dinaRouter, dinasticoRouter)
       fullRouter = Object.assign({}, fullRouter, componentRoutes)
     }
   }
 })
 
 const currentDir = process.cwd()
-fs.writeFileSync(path.join(currentDir, '.routes', 'routes.json'), JSON.stringify(fullRouter))
-fs.writeFileSync(path.join(currentDir, '.routes', 'dinastico-routes.json'), JSON.stringify(dinasticoRouter))
+fs.writeFileSync(path.join(currentDir, '.routes', 'routes.json'), JSON.stringify(fullRouter, null, '\t'))
+fs.writeFileSync(path.join(currentDir, '.routes', 'dinastico-routes.json'), JSON.stringify(dinasticoRouter, null, '\t'))

@@ -24,7 +24,7 @@ class Msg extends React.Component {
     const { comments, fetched } = this.state
     return (
       <main>
-        <h1>Msg.js</h1>
+        <h1>msg.js</h1>
         {comments.map(C => {
           if (!fetched) {
             return <CommentCard key={C} />

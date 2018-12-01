@@ -26,7 +26,27 @@ const clientProduction = {
       }
     },
     minimizer: [
-      new TerserPlugin()
+      new TerserPlugin({
+        parallel: true,
+        cache: true,
+        sourceMap: false,
+        terserOptions: {
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2
+          },
+          mangle: {
+            safari10: true
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true
+          }
+        }
+      })
     ]
   },
   plugins: [
