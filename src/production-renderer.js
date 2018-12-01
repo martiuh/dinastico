@@ -12,7 +12,7 @@ import fileRouter from '../.routes/file-router'
 import { getPage } from './utils'
 
 let { pathname } = window.location
-const dinasticoRoot = document.getElementById('__dinastico__')
+const dinasticoRoot = document.getElementById('__dinastico')
 
 window.__asyncChunks = asyncChunks
 window.__fullRoutes = fullRoutes

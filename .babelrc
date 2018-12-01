@@ -10,6 +10,7 @@
     "@babel/plugin-proposal-class-properties",
     "universal-import",
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-transform-classes"
+    "@babel/plugin-transform-classes",
+    "react-hot-loader/babel"
   ]
 }

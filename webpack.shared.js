@@ -21,7 +21,7 @@ module.exports = function webpackShared(env) {
     resolve: {
       extensions: ['.js', '.css', '.jsx'],
       alias: {
-        'dinastico-link': path.resolve(__dirname, 'src/Link')
+        'dinastico-link': path.resolve(__dirname, 'src/dinastico-link')
       }
     }
   }

@@ -1,9 +1,14 @@
 const path = require('path')
 const WriteFilePlugin = require('write-file-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    bundle: path.join(__dirname, 'src')
+    bundle: [
+      'webpack-hot-middleware/client?__webpack_hmr&reload=true&overlay=true',
+      path.join(__dirname, 'src', 'development-renderer')
+    ]
   },
   mode: 'development',
   output: {
@@ -17,6 +22,10 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
-    new WriteFilePlugin()
+    new HtmlWebpackPlugin({
+      template: './dev-template.html'
+    }),
+    new WriteFilePlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

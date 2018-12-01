@@ -16,12 +16,23 @@ const FourOFour = () => (
 const syncChunksArr = Object.values(syncChunks)
 const Chunknames = Object.keys(syncChunks)
 
+function Sandwich() {
+  return (
+    <main>
+      <h1>
+        Sandwich.js
+      </h1>
+    </main>
+  )
+}
+
 export default function Layout() {
   const DinasticoRouter = () => (
     <Router>
       {syncChunksArr.map((sync, index) => {
         // TODO: Make a Component Base Router
         const Comp = sync.default
+        const SyncComp = sync
         let defaultPath = fileRouter[Chunknames[index]]
         defaultPath = defaultPath === 'index/' ? '/' : defaultPath
         let Page = ''
@@ -37,16 +48,18 @@ export default function Layout() {
           const newPath = buildSyncRouter(Page.props, defaultPath)
           return <Comp key={newPath || defaultPath} path={newPath || defaultPath} />
         }
-        return <Comp key={defaultPath} path={defaultPath} />
+        return <SyncComp key={defaultPath} path={defaultPath} />
       })}
       <FourOFour path='*' />
+      <Sandwich path='/sandwich' />
     </Router>
   )
 
-  const MemoRouter = memo(DinasticoRouter)
+  const MemoDinastico = memo(DinasticoRouter)
+
   return (
     <React.Fragment>
-      <MemoRouter />
+      <MemoDinastico />
     </React.Fragment>
   )
 }

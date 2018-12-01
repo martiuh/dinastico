@@ -13,7 +13,7 @@ export default (string, { Pages, js, css }) => {
       ${cssString}
     </head>
     <body>
-      <div id="__dinastico__">
+      <div id="__dinastico">
         ${string}
       </div>
       ${jsString}

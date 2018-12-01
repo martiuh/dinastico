@@ -16,6 +16,7 @@ const baseConfig = (env, envConfig) => {
   const shared = sharedConfig(env)
   const config = {
     ...shared,
+    target: 'web',
     plugins: [
       new ExtractCSSChunks({
         filename: `[name]${isDev ? '' : '.[chunkhash]'}.css`,
