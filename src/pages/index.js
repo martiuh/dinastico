@@ -44,7 +44,7 @@ export default class extends React.Component {
     return (
       <Layout>
         <div className='box'>
-          <h1>Star Wars.js Crazy Locote</h1>
+          <h1>Star Wars - Movies</h1>
           {movies.map(movie => {
             if (typeof movie === 'number') {
               return <MovieCard key={movie} />
