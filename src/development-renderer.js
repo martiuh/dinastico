@@ -18,6 +18,7 @@ renderApp(DevRouter)
 
 if (module.hot) {
   module.hot.accept('./DevRouter', () => {
+    // eslint-disable-next-line global-require
     const NewDevRouter = require('./DevRouter').default
     renderApp(NewDevRouter)
   })
