@@ -20,19 +20,20 @@ PORT = process.env.PORT || PORT
 console.log(chalk.yellow('Building Router'))
 buildDinastico() // This is synchronous
 console.log(chalk.green('Router Build!!!'))
+
 const Start = () => {
   app.listen(PORT, () => console.log(chalk.magenta(`App lista en ${PORT}`)))
 }
 
 const app = express()
-const devCompiler = webpack(clientConfig)
-const devMiddleware = webpackDevMiddleware(devCompiler, {
+const cilentCompiler = webpack(clientConfig)
+const devMiddleware = webpackDevMiddleware(cilentCompiler, {
   stats: false,
   publicPath
 })
 
+app.use(devMiddleware)
 devMiddleware.waitUntilValid(Start)
-const cilentCompiler = devCompiler
 
 app.use(hotMiddleware(cilentCompiler, {
   log: false,
@@ -40,6 +41,5 @@ app.use(hotMiddleware(cilentCompiler, {
   heartbeat: 10 * 1000
 }))
 
-app.use(devMiddleware)
 app.use(publicPath, express.static(outputPath))
 app.use('/*', (req, res) => res.sendFile(path.resolve('./public/index.html')))

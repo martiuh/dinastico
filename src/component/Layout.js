@@ -9,7 +9,6 @@ export default ({ children }) => (
     <nav className='navbar'>
       <Link to='/'>Home</Link>
       <Link to='/hello'>Hello</Link>
-      <Link to='/world'>World</Link>
       <Link to='/msg'>Msg</Link>
     </nav>
     {children}

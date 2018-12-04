@@ -1,29 +1,10 @@
 import React from 'react'
-import axios from 'axios'
+import unoapi from 'unoapi'
+import Link from 'dinastico-link'
 
+import MovieCard from '../component/MovieCard'
 import Layout from '../component/Layout'
-
-import '../css/index'
-
-export const unoapi = axios.create({
-  baseURL: 'https://unobrokers.com/wp-json/wp/v2'
-})
-
-const MovieCard = ({ title, image }) => (
-  <div className='movieCard'>
-    <h1
-      dangerouslySetInnerHTML={{ __html: title.rendered }}
-    />
-    <img src={image} alt={title.rendered} />
-  </div>
-)
-
-MovieCard.defaultProps = {
-  title: {
-    rendered: ''
-  },
-  image: ''
-}
+import '../css/index.css'
 
 export default class extends React.Component {
   state = {
@@ -31,6 +12,7 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     this.getMovies() //
   }
 
@@ -45,16 +27,21 @@ export default class extends React.Component {
       <Layout>
         <div className='box'>
           <h1>Star Wars - Movies</h1>
+          {/* <MovieCard /> */}
           {movies.map(movie => {
             if (typeof movie === 'number') {
               return <MovieCard key={movie} />
             }
             return (
-              <MovieCard
-                key={movie.id}
-                title={movie.title}
-                image={movie.acf.main_image.sizes.thumbnail}
-              />
+              <React.Fragment>
+                <MovieCard
+                  key={movie.id}
+                  title={movie.title}
+                  images={movie.acf.main_image.sizes}
+                  id={movie.id}
+                />
+                <Link to={`/movies/${movie.id}`}>Ver más</Link>
+              </React.Fragment>
             )
           })}
         </div>

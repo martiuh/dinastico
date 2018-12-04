@@ -1,7 +1,7 @@
 // Only one entry point
 const path = require('path')
-const DisableOutput = require('disable-output-webpack-plugin')
 const webpack = require('webpack')
+const WriteFilePlugin = require('write-file-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 const sharedConfig = require('./webpack.shared')
 
@@ -31,7 +31,7 @@ module.exports = function dinasticoWebpack(env) {
       ]
     },
     plugins: [
-      // new DisableOutput(),
+      new WriteFilePlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
       }),

@@ -1,0 +1,28 @@
+.movieCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 10vh;
+  background-color: white;
+  margin-bottom: 15px;
+}
+
+.movieCard h1 {
+  min-height: 10vw;
+  transition: background-color 500ms ease;
+}
+
+.movieCard h1:empty {
+  width: 50%;
+  background-color: lightgray;
+}
+
+.movieCard img {
+  object-fit: contain;
+  align-self: center;
+}
+
+.movieCard img:empty {
+  width: 200px;
+  height: 200px;
+  background-color: lightgray;
+}

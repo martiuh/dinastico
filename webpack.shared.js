@@ -21,7 +21,8 @@ module.exports = function webpackShared(env) {
     resolve: {
       extensions: ['.js', '.css', '.jsx'],
       alias: {
-        'dinastico-link': path.resolve(__dirname, 'src/dinastico-link')
+        'dinastico-link': path.resolve(__dirname, 'src/dinastico-link'),
+        unoapi: path.resolve(__dirname, 'src/unoapi.js')
       }
     }
   }

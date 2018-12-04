@@ -66,7 +66,7 @@
   },
   "scripts": {
     "analyze:client": "yarn clean && cross-env ANAYLYZE=1 yarn build:client",
-    "start": "yarn clean && cross-env NODE_ENV=development node devServer.js",
+    "start": "yarn clean && yarn clean:chunks && cross-env NODE_ENV=development node devServer.js",
     "prod": "yarn build && yarn serve",
     "heroku-start": "node server.js",
     "clean": "rimraf public",
