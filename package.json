@@ -68,17 +68,17 @@
     "sass-loader": "^7.1.0"
   },
   "scripts": {
-    "analyze:client": "yarn clean && cross-env ANAYLYZE=1 yarn build:client",
-    "start": "yarn clean && yarn clean:chunks && cross-env NODE_ENV=development node devServer.js",
+    "analyze:client": "yarn clean && yarn build:client --env ANALYZE",
+    "start": "yarn clean && yarn clean:chunks && node devServer.js",
     "prod": "yarn build && yarn serve",
     "heroku-start": "node server.js",
     "clean": "rimraf public",
     "clean:chunks": "rimraf .routes && mkdir .routes",
     "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:dinastico",
     "build:chunks": "yarn clean:chunks && node dinastico.build-chunks.js",
-    "build:routes": "webpack --config dinastico.routes.webpack.js && node .routes/buildRoutes",
-    "build:client": "cross-env NODE_ENV=production webpack --mode production --colors",
-    "build:dinastico": "cross-env NODE_ENV=production webpack --mode production --config dinastico.webpack.js",
+    "build:routes": "webpack --config dinastico.routes.webpack.js --mode production && node .routes/buildRoutes",
+    "build:client": "webpack --mode production --colors",
+    "build:dinastico": "webpack --mode production --config dinastico.webpack.js",
     "serve": "cross-env NODE_ENV=production node server.js",
     "heroku-postbuild": "yarn build"
   }

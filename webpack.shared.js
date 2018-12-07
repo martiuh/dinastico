@@ -1,6 +1,6 @@
 const path = require('path')
 
-module.exports = function webpackShared(env) {
+module.exports = function webpackShared(env, argv) {
   const config = {
     module: {
       rules: [

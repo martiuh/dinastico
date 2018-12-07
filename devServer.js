@@ -9,11 +9,11 @@ const chokidar = require('chokidar')
 const webpackConfig = require('./webpack.config')
 const buildDinastico = require('./dinastico.build-chunks')
 
-const clientConfig = webpackConfig()
+const clientConfig = webpackConfig(null, { mode: 'development' })
 const { publicPath } = clientConfig.output
 const outputPath = clientConfig.output.path
 const { NODE_ENV } = process.env
-const isDev = NODE_ENV !== 'production'
+const isDev = NODE_ENV === 'development'
 let PORT = isDev ? 3030 : 8080
 PORT = process.env.PORT || PORT
 

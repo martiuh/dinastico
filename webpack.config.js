@@ -5,8 +5,8 @@ const webpackMerge = require('webpack-merge')
 const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 
 const sharedConfig = require('./webpack.shared')
-const dev = require('./webpack.dev')
-const production = require('./webpack.production')
+const wpDev = require('./webpack.dev')
+const wpProduction = require('./webpack.production')
 
 const { NODE_ENV } = process.env
 
@@ -37,7 +37,7 @@ const baseConfig = (env, argv, envConfig) => {
       new webpack.DefinePlugin({
         IS_SERVER: false,
         'process.env': {
-          NODE_ENV: JSON.stringify(NODE_ENV || 'development')
+          NODE_ENV: JSON.stringify(argv.mode || 'development')
         }
       })
     ]
@@ -47,8 +47,11 @@ const baseConfig = (env, argv, envConfig) => {
 }
 
 module.exports = function webpackConfig(env, argv) {
+  const dev = wpDev
+  const production = wpProduction(env, argv)
+
   let config = baseConfig(env, argv, dev)
-  if (NODE_ENV === 'production') {
+  if (argv.mode === 'production') {
     config = baseConfig(env, argv, production)
   }
   return config
