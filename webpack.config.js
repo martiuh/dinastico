@@ -12,11 +12,22 @@ const { NODE_ENV } = process.env
 
 const isDev = NODE_ENV === 'development'
 
-const baseConfig = (env, envConfig) => {
+const baseConfig = (env, argv, envConfig) => {
   const shared = sharedConfig(env)
   const config = {
-    ...shared,
     target: 'web',
+    module: {
+      rules: [
+        {
+          test: /\.(css|scss|sass)$/,
+          use: [
+            ExtractCSSChunks.loader,
+            'css-loader',
+            'sass-loader'
+          ]
+        }
+      ]
+    },
     plugins: [
       new ExtractCSSChunks({
         filename: `[name]${isDev ? '' : '.[chunkhash]'}.css`,
@@ -32,13 +43,13 @@ const baseConfig = (env, envConfig) => {
     ]
   }
 
-  return webpackMerge(envConfig, config)
+  return webpackMerge.smart(envConfig, config, shared)
 }
 
 module.exports = function webpackConfig(env, argv) {
-  let config = baseConfig(env, dev)
+  let config = baseConfig(env, argv, dev)
   if (NODE_ENV === 'production') {
-    config = baseConfig(env, production)
+    config = baseConfig(env, argv, production)
   }
   return config
 }

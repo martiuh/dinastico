@@ -2,7 +2,7 @@
 const { StatsWriterPlugin } = require('webpack-stats-plugin')
 const path = require('path')
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
-const DisableOutput = require('disable-output-webpack-plugin')
+
 const webpack = require('webpack')
 const { readdirSync } = require('fs')
 const webpackMerge = require('webpack-merge')
@@ -26,15 +26,11 @@ module.exports = function dinasticoWebpack(env) {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(css|scss|sass)$/,
           exclude: /node_modules/,
           use: [
-            {
-              loader: 'css-loader/locals',
-              options: {
-                modules: true
-              }
-            }
+            'css-loader',
+            'sass-loader'
           ]
         }
       ]

@@ -33,14 +33,13 @@ export default class extends React.Component {
               return <MovieCard key={movie} />
             }
             return (
-              <React.Fragment>
+              <React.Fragment key={movie.id}>
                 <MovieCard
-                  key={movie.id}
                   title={movie.title}
                   images={movie.acf.main_image.sizes}
                   id={movie.id}
                 />
-                <Link to={`/movies/${movie.id}`}>Ver más</Link>
+                <Link to={`/movies/${movie.id}`}>Entrar</Link>
               </React.Fragment>
             )
           })}

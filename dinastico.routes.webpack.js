@@ -17,15 +17,11 @@ module.exports = function dinasticoWebpack(env) {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(css|scss|sass)$/,
           exclude: /node_modules/,
           use: [
-            {
-              loader: 'css-loader/locals',
-              options: {
-                modules: true
-              }
-            }
+            'css-loader',
+            'sass-loader'
           ]
         }
       ]

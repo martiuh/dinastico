@@ -55,6 +55,7 @@ export default function Layout() {
     </Router>
   )
 
+  // Without `memo` the reconciliation fails
   const MemoDinastico = memo(DinasticoRouter)
 
   return (

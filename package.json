@@ -62,8 +62,10 @@
     "compression": "^1.7.3",
     "express": "^4.16.4",
     "lodash": "^4.17.11",
+    "node-sass": "^4.10.0",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "sass-loader": "^7.1.0"
   },
   "scripts": {
     "analyze:client": "yarn clean && cross-env ANAYLYZE=1 yarn build:client",

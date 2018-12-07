@@ -1,4 +1,3 @@
-const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 const path = require('path')
 
 module.exports = function webpackShared(env) {
@@ -8,18 +7,12 @@ module.exports = function webpackShared(env) {
         {
           test: /\.jsx?$/,
           loader: 'babel-loader'
-        },
-        {
-          test: /\.css$/,
-          use: [
-            ExtractCSSChunks.loader,
-            'css-loader'
-          ]
         }
       ]
+      // No .css here
     },
     resolve: {
-      extensions: ['.js', '.css', '.jsx'],
+      extensions: ['.js', '.css', '.scss', '.sass', '.jsx'],
       alias: {
         'dinastico-link': path.resolve(__dirname, 'src/dinastico-link'),
         unoapi: path.resolve(__dirname, 'src/unoapi.js')

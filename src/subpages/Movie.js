@@ -2,7 +2,7 @@ import React from 'react'
 import unoapi from 'unoapi'
 import Link from 'dinastico-link'
 
-import MovieCard from './MovieCard'
+import MovieCard from '../component/MovieCard'
 
 export default class Movie extends React.Component {
   state = {
@@ -30,15 +30,30 @@ export default class Movie extends React.Component {
 
   render() {
     const { movie, fetched } = this.state
-    if (!fetched) {
-      return <MovieCard />
+    let images = {
+      thumbnail: ''
     }
+    let description = ''
+
+    if (movie) {
+      if (movie.acf) {
+        if (movie.acf.main_image) {
+          images = movie.acf.main_image.sizes
+        }
+
+        if (movie.acf.description) {
+          // eslint-disable-next-line prefer-destructuring
+          description = movie.acf.description
+        }
+      }
+    }
+
     return (
       <main>
         <MovieCard
           {...movie}
-          images={movie.acf.main_image.sizes}
-          description={movie.acf.description}
+          images={images}
+          description={description}
         />
         <Link to='/'>
           De vuela a inicio

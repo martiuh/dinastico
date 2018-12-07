@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, navigate } from '@reach/router'
 
 import Layout from '../component/Layout'
-import Movie from '../component/Movie'
+import Movie from '../subpages/Movie'
 
 class Movies extends React.Component {
   componentDidMount() {
