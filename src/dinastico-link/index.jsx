@@ -21,11 +21,18 @@ const tryPrefetch = to => {
 }
 
 export default function DinasticoLink(props) {
-  const { to, onClick, ...rest } = props
+  const {
+    to,
+    onClick,
+    onMouseEnter,
+    ...rest
+  } = props
+
   return (
     <Link
       to={to}
-      onMouseEnter={event => {
+      onMouseEnter={e => {
+        onMouseEnter && onMouseEnter(e)
         const importFn = tryPrefetch(to)
         if (importFn) {
           universal(importFn).preload()

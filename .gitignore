@@ -3,5 +3,6 @@ public
 .routes
 yarn-error.log
 public
+public.zip
 
 ### Ignore things

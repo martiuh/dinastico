@@ -13,9 +13,7 @@ const clientConfig = webpackConfig(null, { mode: 'development' })
 const { publicPath } = clientConfig.output
 const outputPath = clientConfig.output.path
 const { NODE_ENV } = process.env
-const isDev = NODE_ENV === 'development'
-let PORT = isDev ? 3030 : 8080
-PORT = process.env.PORT || PORT
+const PORT = process.env.PORT || 3030
 
 console.log(chalk.yellow('Building Router'))
 buildDinastico() // This is synchronous

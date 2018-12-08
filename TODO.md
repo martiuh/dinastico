@@ -7,6 +7,6 @@
 - Build a file system for each dynamic or static route
 ## Dinastico Routing
 - .htaccess
-  - Make an htaccess file to succesfully route dynamic URL parameters
+  - ~~Make an htaccess file to succesfully route dynamic URL parameters~~
 - php
-  - Buil an automatic `AltoRouter` with each dynamic url
+  - Build an automatic `AltoRouter` with each dynamic url

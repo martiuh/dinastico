@@ -26,7 +26,7 @@ export default class extends React.Component {
     return (
       <Layout>
         <div className='box'>
-          <h1>Star Wars - Movies</h1>
+          <h1>Star Wars - Movie</h1>
           {/* <MovieCard /> */}
           {movies.map(movie => {
             if (typeof movie === 'number') {
