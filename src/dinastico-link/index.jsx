@@ -3,6 +3,9 @@ import universal from 'react-universal-component'
 import { Link, navigate } from '@reach/router'
 import { isDev } from '../utils'
 
+/*
+  TODO: Work with relative url
+*/
 const getChunkName = to => {
   let simpleTo = to[0] === '/' && to !== '/' ? to.substr(1) : to
   simpleTo = to === '/' ? to : `${simpleTo}/`
@@ -27,7 +30,6 @@ export default function DinasticoLink(props) {
     onMouseEnter,
     ...rest
   } = props
-
   return (
     <Link
       to={to}

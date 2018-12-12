@@ -50,14 +50,15 @@ export default class Movie extends React.Component {
 
     return (
       <main>
+        <Link to='/'>
+          {'<---'} De vuela a inicio
+        </Link>
         <MovieCard
+          key={fetched.toString()}
           {...movie}
           images={images}
           description={description}
         />
-        <Link to='/'>
-          De vuela a inicio
-        </Link>
       </main>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'dinastico-link'
 
+import '../css/normalize.css'
 import './Layout.scss'
 // import EstaticoLink from './EstaticoLink'
 

@@ -17,11 +17,23 @@ class Movies extends React.Component {
 }
 
 
+function MovieId(props) {
+  return (
+    <main
+      style={{
+        padding: '10px'
+      }}
+    >
+      <Movie {...props} />
+    </main>
+  )
+}
+
 export default () => (
   <Layout>
     <Router>
       <Movies path='/' />
-      <Movie path=':movieId' />
+      <MovieId path=':movieId' />
     </Router>
   </Layout>
 )

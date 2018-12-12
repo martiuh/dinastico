@@ -27,9 +27,9 @@ report.success('router build!!!')
 
 const Start = () => {
   const watcher = chokidar.watch(pagesDir)
-  watcher
-    .on('add', file => report.event(`${file} was added`))
-    .on('unlink', file => report.warn(`${file} was removed`))
+  // watcher
+  //   .on('add', file => report.event(`${file} was added`))
+  //   .on('unlink', file => report.warn(`${file} was removed`))
 
   app.listen(PORT, () => report.success(`app is running in localhost:${PORT}`))
 }

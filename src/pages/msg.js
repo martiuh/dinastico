@@ -3,9 +3,10 @@ import { Router } from '@reach/router'
 import axios from 'axios'
 import Link from 'dinastico-link'
 
-import MyCustomMessage from '../component/MyCustomMessage'
+import MyCustomMessage from '../subpages/MyCustomMessage'
 import CommentCard from '../component/CommentCard'
-import '../css/msg.css'
+import Layout from '../component/Layout'
+import '../css/msg.scss'
 
 class Msg extends React.Component {
   state = {
@@ -23,13 +24,13 @@ class Msg extends React.Component {
   render() {
     const { comments, fetched } = this.state
     return (
-      <main>
-        <h1>msg.js file</h1>
+      <main className='msg-box'>
+        <h1>Mensajes</h1>
+        <Link to='/msg/privacidad'>Ver privacidad</Link>
         {comments.map(C => {
           if (!fetched) {
             return <CommentCard key={C} />
           }
-
           return (
             <CommentCard
               key={C.id}
@@ -45,20 +46,19 @@ class Msg extends React.Component {
 }
 
 function Privacidad() {
-  return <h1>Privacidad es importante</h1>;
+  return (
+    <main>
+      <h1>Privacidad es importante</h1>
+    </main>
+  )
 }
 
 export default () => (
-  <React.Fragment>
-    <nav className='msg-navbar'>
-      <Link to='/'>
-        Inicio
-      </Link>
-    </nav>
+  <Layout>
     <Router>
       <Msg path='/' />
       <Privacidad path='privacidad' />
       <MyCustomMessage path=':message' />
     </Router>
-  </React.Fragment>
+  </Layout>
 )

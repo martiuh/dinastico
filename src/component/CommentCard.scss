@@ -1,0 +1,15 @@
+.msg-body {
+  &:empty {
+    min-width: 30vw;
+    min-height: 18px;
+    background-color: lightgray;
+  }
+}
+
+.msg-email {
+  &:empty {
+    min-width: 50vw;
+    min-height: 22px;
+    background-color: gray;
+  }
+}
