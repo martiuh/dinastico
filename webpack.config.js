@@ -5,14 +5,12 @@ const webpackMerge = require('webpack-merge')
 const ExtractCSSChunks = require('extract-css-chunks-webpack-plugin')
 
 const sharedConfig = require('./webpack.shared')
-const wpDev = require('./webpack.dev')
+const devConfig = require('./webpack.dev')
 const wpProduction = require('./webpack.production')
 
-const { NODE_ENV } = process.env
-
-const isDev = NODE_ENV === 'development'
 
 const baseConfig = (env, argv, envConfig) => {
+  const isDev = argv.mode === 'development'
   const shared = sharedConfig(env)
   const config = {
     target: 'web',
@@ -47,12 +45,14 @@ const baseConfig = (env, argv, envConfig) => {
 }
 
 module.exports = function webpackConfig(env, argv) {
-  const dev = wpDev
+  const dev = devConfig
   const production = wpProduction(env, argv)
-
-  let config = baseConfig(env, argv, dev)
+  let config = null
   if (argv.mode === 'production') {
     config = baseConfig(env, argv, production)
+  }
+  else {
+    config = baseConfig(env, argv, dev)
   }
   return config
 }

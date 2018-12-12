@@ -54,7 +54,8 @@
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.1.4",
     "webpack-stats-plugin": "^0.2.1",
-    "write-file-webpack-plugin": "^4.4.1"
+    "write-file-webpack-plugin": "^4.4.1",
+    "yurnalist": "^0.2.1"
   },
   "dependencies": {
     "@babel/node": "^7.0.0",

@@ -3,24 +3,35 @@ const path = require('path')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
-const chalk = require('chalk')
 const chokidar = require('chokidar')
+const fs = require('fs')
+const report = require('./report')
 
 const webpackConfig = require('./webpack.config')
 const buildDinastico = require('./dinastico.build-chunks')
+// check if pagesDir exists in src
+const pagesDir = path.resolve(__dirname, 'src', 'pages')
+const hasPages = fs.existsSync(pagesDir)
+if (!hasPages) {
+  report.failure('make sure ./src/pages folder exists')
+}
 
 const clientConfig = webpackConfig(null, { mode: 'development' })
 const { publicPath } = clientConfig.output
 const outputPath = clientConfig.output.path
-const { NODE_ENV } = process.env
 const PORT = process.env.PORT || 3030
 
-console.log(chalk.yellow('Building Router'))
+report.event('building router')
 buildDinastico() // This is synchronous
-console.log(chalk.green('Router Build!!!'))
+report.success('router build!!!')
 
 const Start = () => {
-  app.listen(PORT, () => console.log(chalk.magenta(`App lista en ${PORT}`)))
+  const watcher = chokidar.watch(pagesDir)
+  watcher
+    .on('add', file => report.event(`${file} was added`))
+    .on('unlink', file => report.warn(`${file} was removed`))
+
+  app.listen(PORT, () => report.success(`app is running in localhost:${PORT}`))
 }
 
 const app = express()

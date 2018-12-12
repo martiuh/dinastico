@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'dinastico-link'
 
-import './Layout.css'
+import './Layout.scss'
 // import EstaticoLink from './EstaticoLink'
 
 export default ({ children }) => (
