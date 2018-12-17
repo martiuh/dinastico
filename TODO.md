@@ -5,7 +5,7 @@
   - ~~detects when the any page exports a `Router` instance~~
 - ~~Programatically build a **production** Router from the src/pages folder~~
 - `dinastico-link` tries to guess if the dynamic url is part of our routing strategy, otherwise just prefetch an `404.html`
-- Build a file or folder for each route in our app (for faster first print)
+- ~~Build a file or folder for each route in our app (for faster first print)~~
 ## Dinastico Routing
 - .htaccess
   - ~~Make an htaccess file to succesfully route dynamic URL parameters~~

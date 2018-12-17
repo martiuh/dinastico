@@ -3,7 +3,7 @@ import { Router } from '@reach/router'
 import Layout from '../component/Layout'
 
 function Item() {
-  return <h1>Salute My Friends.js</h1>
+  return <h1>Items.js</h1>
 }
 
 export default function ItemRouter() {
