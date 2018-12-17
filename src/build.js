@@ -2,13 +2,15 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
 
-import { assetsByChunkName as dinasticoStats } from '../public/stats.json'
 import DefaultHtml from './DefaultHtml'
 import template from './template'
 import { jsMatch, cssMatch } from './utils'
 import * as syncChunks from '../.routes/sync-chunks'
+/* eslint-disable import/no-unresolved */
 import dinasticoRoutes from '../.routes/dinastico-routes.json'
+import { assetsByChunkName as dinasticoStats } from '../public/stats.json'
 import fullRoutes from '../.routes/routes.json'
+/* eslint-enable import/no-unresolved */
 
 // import dinasticoRoutes from './dinasticoRoutes'
 // 1. Get Pages

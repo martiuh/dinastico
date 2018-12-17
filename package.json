@@ -87,6 +87,10 @@
     "build:dinastico": "webpack --mode production --config dinastico.webpack.js",
     "serve": "cross-env NODE_ENV=production node server.js",
     "heroku-postbuild": "yarn build",
-    "heroku-start": "node server.js"
+    "heroku-start": "node server.js",
+    "test": "yarn lint"
+  },
+  "hooks": {
+    "pre-push": "yarn test"
   }
 }
