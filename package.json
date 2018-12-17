@@ -90,7 +90,9 @@
     "heroku-start": "node server.js",
     "test": "yarn lint"
   },
-  "hooks": {
-    "pre-push": "yarn test"
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn test"
+    }
   }
 }
