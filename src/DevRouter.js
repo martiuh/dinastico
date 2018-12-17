@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Link, Router } from '@reach/router'
 
 import syncChunks from '../.routes/sync-chunks'
@@ -23,6 +23,9 @@ function DevRouter() {
       {SyncChunksArr.map((sync, index) => {
         // TODO: Make a Component Based Router
         const Comp = sync.default
+        if (!Comp) {
+          return null
+        }
         const SyncComp = sync
         let defaultPath = fileRouter[Chunknames[index]]
         defaultPath = defaultPath === 'index/' ? '/' : defaultPath
@@ -46,4 +49,4 @@ function DevRouter() {
   )
 }
 
-export default memo(DevRouter)
+export default DevRouter

@@ -31,6 +31,7 @@ class MoviePic extends React.Component {
       low,
       alt,
       high,
+      styleObj,
       ...props
     } = this.props
 
@@ -38,9 +39,9 @@ class MoviePic extends React.Component {
       return (
         <div
           style={{
-            backgroundColor: 'lightgray',
+            maxWidth: '400px',
             height: '400px',
-            width: '400px'
+            ...styleObj
           }}
         />
       )
@@ -67,6 +68,9 @@ export default function MovieCard({ title, images, description }) {
         low={medium}
         high={large}
         alt={title.rendered}
+        style={{
+          width: images['large-width']
+        }}
       />
       {description !== '' && (
         <React.Fragment>
