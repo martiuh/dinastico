@@ -7,18 +7,21 @@ const jsMatch = require('./src/utils/jsMatch')
 
 const buildDinastico = () => {
   const currentDir = __dirname
-  const pagesPath = path.join(currentDir, 'src', 'pages')
+  const pagePath = path.join(currentDir, 'src', 'pages')
   let importChunks = ''
   let requireChunks = ''
   let fileRouter = ''
-  fs.readdirSync(pagesPath).forEach(P => {
+  const files = []
+  fs.readdirSync(pagePath).forEach(P => {
     if (jsMatch(P)) {
-      const chunkName = `site--${kebabCase(`pages/${P}`)}`
+      const fullPath = slash(path.resolve(__dirname, pagePath, P))
+      files.push(fullPath)
+      const chunkName = `site--${fullPath}`
       importChunks = `${importChunks}
-      "${chunkName}": import("${slash(pagesPath)}/${P}"/* webpackChunkName: "${chunkName}" */),`
+      "${chunkName}": import("${fullPath}"/* webpackChunkName: "${chunkName}" */),`
 
       requireChunks = `${requireChunks}
-      "${chunkName}": require("${slash(pagesPath)}/${P}"),`
+      "${chunkName}": require("${slash(pagePath)}/${P}"),`
 
       fileRouter = `${fileRouter}
       "${chunkName}": "${P.split('.js')[0]}/",`
@@ -34,6 +37,7 @@ const buildDinastico = () => {
   fs.writeFileSync(`${currentDir}/.routes/async-chunks.js`, importChunks)
   fs.writeFileSync(`${currentDir}/.routes/sync-chunks.js`, requireChunks)
   fs.writeFileSync(`${currentDir}/.routes/file-router.js`, fileRouter)
+  return files
 }
 
 module.exports = buildDinastico

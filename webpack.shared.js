@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = function webpackShared(env, argv) {
   const config = {
@@ -14,6 +15,7 @@ module.exports = function webpackShared(env, argv) {
     resolve: {
       extensions: ['.js', '.css', '.scss', '.sass', '.jsx'],
       alias: {
+        'react-dom': '@hot-loader/react-dom',
         'dinastico-link': path.resolve(__dirname, 'src/dinastico-link'),
         unoapi: path.resolve(__dirname, 'src/unoapi.js')
       }
