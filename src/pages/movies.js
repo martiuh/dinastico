@@ -10,8 +10,11 @@ class Movies extends React.Component {
   }
 
   render() {
+    const { children } = this.props
     return (
-      null
+      <main>
+        {children}
+      </main>
     )
   }
 }

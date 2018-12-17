@@ -18,20 +18,25 @@ $placeholder-color: #d0caca;
   }
 
   img {
+    object-fit: cover;
+    height: 400px;
+    width: 50%;
+    @media (max-width: 750px) {
+      width: 100%;
+    }
+
+    background-color: transparent;
+    transition: background-color 100ms ease-in;
+    transition: filter 500ms ease;
+
+    &.blur-image {
+      filter: blur(5px);
+    }
+
     &[src=""] {
       height: 400px;
       transition: background-color 100ms ease-in;
       background-color: $placeholder-color;
     }
-
-    object-fit: contain;
-    max-height: 400px;
-    width: 50%;
-
-    @media (max-width: 650px) {
-      width: 100%;
-    }
-    background-color: transparent;
-    transition: background-color 100ms ease-in;
   }
 }

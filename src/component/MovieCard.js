@@ -10,14 +10,23 @@ class MoviePic extends React.Component {
   }
 
   componentDidMount() {
-    const { high } = this.props
+    const { high, low } = this.props
     const full = new Image()
     full.src = high
-    full.onload = () => this.setState({ image: high })
+    full.onload = () => this.setState({ image: high, showFallback: false })
+    const half = new Image()
+    half.src = low
+    half.onload = () => {
+      const { image } = this.state
+      if (image === high) {
+        return null
+      }
+      return this.setState({ image: low })
+    }
   }
 
   render() {
-    const { image } = this.state
+    const { image, showFallback } = this.state
     const {
       low,
       alt,
@@ -25,9 +34,21 @@ class MoviePic extends React.Component {
       ...props
     } = this.props
 
+    if (!image) {
+      return (
+        <div
+          style={{
+            backgroundColor: 'lightgray',
+            height: '400px',
+            width: '400px'
+          }}
+        />
+      )
+    }
     return (
       <img
-        src={image || low}
+        className={showFallback ? 'blur-image' : ''}
+        src={image}
         alt={alt}
         {...props}
       />
@@ -36,14 +57,14 @@ class MoviePic extends React.Component {
 }
 
 export default function MovieCard({ title, images, description }) {
-  const { thumbnail, large } = images
+  const { thumbnail, large, medium } = images
   return (
     <div className='movieCard'>
       <h2
         dangerouslySetInnerHTML={{ __html: title.rendered }}
       />
       <MoviePic
-        low={thumbnail}
+        low={medium}
         high={large}
         alt={title.rendered}
       />
@@ -62,7 +83,8 @@ MovieCard.defaultProps = {
     rendered: ''
   },
   images: {
-    thumbnail: ''
+    thumbnail: '',
+    medium: ''
   },
   description: ''
 }

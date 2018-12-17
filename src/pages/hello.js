@@ -3,22 +3,22 @@ import Layout from '../component/Layout'
 import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
 
 export default class Hello extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      nombre: 'Tonatiuh González'
-    }
+  state = {
+    toggleName: false
   }
 
-  changeName = () => this.setState({ nombre: 'Tonadioro Pérez' })
+  toggleName = () => this.setState(p => ({
+    toggleName: !p.toggleName
+  }))
 
   render() {
+    const { toggleName } = this.state
+
     return (
       <Layout>
-        <main style={{ width: '100vw', backgroundColor: 'red' }}>
-          <h1>hola a todos {this.state.nombre}</h1>
-          <button type='button' aria-label='Change name' onClick={this.changeName}> Change Name </button>
-          <GreetingAmongWorlds />
+        <main style={{ backgroundColor: 'red' }}>
+          <h1>hola mi nombre es: {!toggleName ? 'Tonatiuh González' : 'González, Tonatiuh'}</h1>
+          <button type='button' aria-label='Change name' onClick={this.toggleName}> Change Name </button>
         </main>
       </Layout>
     )

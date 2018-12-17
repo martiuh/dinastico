@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
 const chokidar = require('chokidar')
+const chalk = require('chalk')
 const fs = require('fs')
 const report = require('./report')
 
@@ -31,7 +32,7 @@ const Start = () => {
   //   .on('add', file => report.event(`${file} was added`))
   //   .on('unlink', file => report.warn(`${file} was removed`))
 
-  app.listen(PORT, () => report.success(`app is running in localhost:${PORT}`))
+  app.listen(PORT, () => report.success(chalk.blue(`app is running in localhost:${PORT}`)))
 }
 
 const app = express()
