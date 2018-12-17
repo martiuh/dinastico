@@ -10,6 +10,7 @@ class DevSocketClass {
 
   init(server) {
     this.theSocket = null
+    // eslint-disable-next-line global-require
     this.websocket = require('socket.io')(server)
     this.websocket.on('connection', s => {
       this.theSocket = s

@@ -12,7 +12,6 @@ export default ({ children }) => (
       <Link to='/hello'>Hello</Link>
       <Link to='/msg'>Msg</Link>
       <Link to='/items'>Items</Link>
-      <Link to='/users'>Users</Link>
     </nav>
     {children}
   </header>

@@ -5,7 +5,6 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
 const chokidar = require('chokidar')
-const chalk = require('chalk')
 const fs = require('fs')
 
 const jsMatch = require('./src/utils/jsMatch')
