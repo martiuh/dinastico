@@ -1,5 +1,6 @@
 const express = require('express')
 const { Server } = require('http')
+const slash = require('slash')
 const path = require('path')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
@@ -45,6 +46,7 @@ const Start = () => {
   const watcher = chokidar.watch(pagesDir)
   watcher
     .on('add', file => {
+      file = slash(file)
       if (!initialPages.includes(file) && jsMatch(file)) {
         report.event(`${file} was added`)
         initialPages = buildDinastico()
