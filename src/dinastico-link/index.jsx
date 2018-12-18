@@ -1,11 +1,9 @@
 import React from 'react'
 import universal from 'react-universal-component'
 import { Link, navigate } from '@reach/router'
+import { pick } from './utils'
 import { isDev } from '../utils'
 
-/*
-  TODO: Work with relative url
-*/
 const getChunkName = to => {
   let simpleTo = to[0] === '/' && to !== '/' ? to.substr(1) : to
   simpleTo = to === '/' ? to : `${simpleTo}/`
@@ -19,7 +17,17 @@ const tryPrefetch = to => {
     return null
   }
   const chunkName = getChunkName(to)
-  const importFn = window.__asyncChunks[chunkName]
+  let importFn = window.__asyncChunks[chunkName]
+  if (!importFn) {
+    const routesArr = window.__dynamicRoutes.map(obj => ({
+      path: obj.route,
+      chunkName: obj.chunkName
+    }))
+    const dynamicRoute = pick(routesArr, to)
+    if (dynamicRoute) {
+      importFn = window.__asyncChunks[dynamicRoute.route.chunkName]
+    }
+  }
   return importFn
 }
 

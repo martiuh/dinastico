@@ -16,7 +16,7 @@ const buildDinastico = () => {
     if (jsMatch(P)) {
       const fullPath = slash(path.resolve(__dirname, pagePath, P))
       files.push(fullPath)
-      const chunkName = `site--${fullPath}`
+      const chunkName = `site--pages-${kebabCase(P)}`
       importChunks = `${importChunks}
       "${chunkName}": import("${fullPath}"/* webpackChunkName: "${chunkName}" */),`
 

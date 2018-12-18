@@ -17,7 +17,7 @@ export default class Hello extends React.Component {
     return (
       <Layout>
         <main style={{ backgroundColor: 'red' }}>
-          <h1>hola mi nombre es: {!toggleName ? 'Tonatiuh González' : 'González, Tonatiuh'}</h1>
+          <h1>Hola soy: {!toggleName ? 'Tonatiuh González' : 'González, Tonatiuh'}</h1>
           <button type='button' aria-label='Change name' onClick={this.toggleName}> Change Name </button>
         </main>
       </Layout>

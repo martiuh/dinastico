@@ -58,6 +58,7 @@ const dinasticoRoutes = () => {
         const finalSlash = string => /.*\/$/.test(string)
         const startsWithDots = string => /^:/.test(string)
 
+        const dotsPath = path
         const hasDots = startsWithDots(path)
         currentRoute = finalSlash(currentRoute) ? currentRoute : `${currentRoute}/`
         path = finalSlash(path) ? path : path.substr(0, path.length)
@@ -70,6 +71,8 @@ const dinasticoRoutes = () => {
           routeObj[`${currentRoute}${path}`] = {
             routeName: `${routeName}*`,
             dynamic: hasDots,
+            route: hasDots ? `${currentRoute}${dotsPath}` : null,
+            chunkName,
             directory: `${currentRoute}${path}`
           }
         }

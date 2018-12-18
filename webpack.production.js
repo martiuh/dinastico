@@ -16,6 +16,9 @@ module.exports = (env, argv) => {
     },
     mode: 'production',
     optimization: {
+      runtimeChunk: {
+        name: 'bootstrap'
+      },
       splitChunks: {
         cacheGroups: {
           vendors: {

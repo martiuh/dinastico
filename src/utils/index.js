@@ -1,4 +1,3 @@
-export { default as getPage } from './getPage'
 export { default as buildSyncRouter } from './buildSyncRouter'
 export { default as jsMatch } from './jsMatch'
 

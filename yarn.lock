@@ -6604,6 +6604,10 @@ webpack-dev-server@^3.1.9:
     webpack-log "^2.0.0"
     yargs "12.0.2"
 
+webpack-flush-chunks@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/webpack-flush-chunks/-/webpack-flush-chunks-2.0.3.tgz#77a4f18d101f889ec33456a0c64a8c0f8b4600db"
+
 webpack-hot-middleware@^2.24.3:
   version "2.24.3"
   resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.24.3.tgz#5bb76259a8fc0d97463ab517640ba91d3382d4a6"

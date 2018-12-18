@@ -10,26 +10,30 @@ import dinasticoRoutes from '../.routes/dinastico-routes.json'
 import fullRoutes from '../.routes/routes.json'
 /* eslint-enable import/no-unresolved*/
 import fileRouter from '../.routes/file-router'
-
-import { getPage } from './utils'
+import { pick } from './dinastico-link/utils'
 
 let { pathname } = window.location
 const dinasticoRoot = document.getElementById('__dinastico')
-
+const routesArr = Object.values(dinasticoRoutes)
 window.__asyncChunks = asyncChunks
 window.__fullRoutes = fullRoutes
+window.__dynamicRoutes = routesArr.filter(dina => !!dina.route)
 
-pathname = pathname === '/' ? '/index/' : pathname
+const router = routesArr.map(routeObj => ({
+  path: routeObj.route || routeObj.directory,
+  chunkName: routeObj.chunkName
+}))
 
-const pageName = getPage(pathname)
-let thePage = asyncChunks[pageName]
-let startsWith = null
-if (!thePage) {
-  [startsWith] = pathname.split('/').filter(item => item !== '')
-  startsWith = `${startsWith}/`
-  thePage = window.__asyncChunks[getPage(startsWith)]
+pathname = pathname === '/' ? pathname : pathname.replace(/(\/)/, '')
+let siteChunk = fullRoutes[pathname]
+if (!siteChunk) {
+  const dynamicMatch = pick(router, pathname)
+  if (dynamicMatch) {
+    siteChunk = dynamicMatch.route.chunkName
+  }
 }
 
+const thePage = asyncChunks[siteChunk]
 if (thePage && thePage.load) {
   const chunksArr = Object.keys(fileRouter)
 

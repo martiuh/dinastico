@@ -8,8 +8,10 @@ import { jsMatch, cssMatch } from './utils'
 import * as syncChunks from '../.routes/sync-chunks'
 /* eslint-disable import/no-unresolved */
 import dinasticoRoutes from '../.routes/dinastico-routes.json'
-import { assetsByChunkName as dinasticoStats } from '../public/stats.json'
+import stats from '../public/stats.json'
 import fullRoutes from '../.routes/routes.json'
+
+const dinasticoStats = stats.assetsByChunkName
 /* eslint-enable import/no-unresolved */
 
 // import dinasticoRoutes from './dinasticoRoutes'
@@ -49,14 +51,32 @@ export default function (locals) {
     return { js, css }
   }
 
-  const { js, css } = organizeChunks(chunkFiles)
+  let js = []
+  let css = []
+  Object.keys(dinasticoStats).forEach(chunk => {
+    let validChunk = null
+    chunk.split('~').forEach(c => {
+      if (validChunk) {
+        return
+      }
+      validChunk = c === chunkName ? chunk : null
+      return null
+    })
+    if (validChunk) {
+      const validChunksArr = dinasticoStats[validChunk]
+      const fullChunks = organizeChunks(validChunksArr)
+      js = [...js, ...fullChunks.js]
+      css = [...css, ...fullChunks.css]
+    }
+  })
   const addPath = value => `/${value}`
   const bundleChunks = organizeChunks(dinasticoStats.bundle) // webpack bundle
-  let jsArr = [...js, ...bundleChunks.js]
+  const bootstrapChunk = organizeChunks(dinasticoStats.bootstrap) // app bootstrap
+  let jsArr = [...js, ...bootstrapChunk.js, ...bundleChunks.js]
   jsArr = jsArr.filter(value => !!value)
   jsArr = jsArr.map(addPath)
 
-  let cssArr = [...css, ...bundleChunks.css]
+  let cssArr = [...css, ...bootstrapChunk.js, ...bundleChunks.css]
   cssArr = cssArr.filter(value => !!value)
   cssArr = cssArr.map(addPath)
 
