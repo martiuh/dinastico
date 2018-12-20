@@ -39,6 +39,7 @@ class MoviePic extends React.Component {
       return (
         <div
           style={{
+            backgroundColor: 'lightgray',
             maxWidth: '400px',
             height: '400px',
             ...styleObj
@@ -67,6 +68,7 @@ export default function MovieCard({ title, images, description }) {
       <MoviePic
         low={medium}
         high={large}
+        higher={images['twentyseventeen-featured-image']}
         alt={title.rendered}
         style={{
           width: images['large-width']
