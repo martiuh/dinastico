@@ -1,6 +1,6 @@
 # **Dinastico** *Hybrid Site Generator*
 
-## Build dynamic, fast and cool `React` based apps
+## Build ~~dynamic/static~~ hybrid, fast and cool `React` based apps
 
 
 current: pre-alpha
