@@ -1,10 +1,27 @@
-# Dinastico Hybrid Site Generator
+# **Dinastico** *Hybrid Site Generator*
+
+## Build dynamic, fast and cool `React` based apps
+
 
 current: pre-alpha
 
-todo: check TODO.md for the ***Road to Alpha***
+todo: check [TODO.MD](TODO.MD) for the ***Road to Alpha***
 
 
-## Motivation
+## **How does it work?**
+Dinastico reads all the `.js` files in the `./src/pages` directory and build a router from them, if you want you can also export a `Router` instance from `@reach/router` and Dinastico will build an `.html` file for each route or file in the `./src/pages` folder.
 
-Although there are powerful `React` based static site generators, I see most of them have a problem, they don't support dynamic urls, so I had an idea, what if I make multiple apps instead of only one app and then in build time I stich them all together using `@reach/router`'s ability to extend the main Router exporting other Routers instance
+### Simple Example (shop)
+
+```
+// src/pages/index.js
+import React from 'react'
+
+export default function Index() {
+  return (
+    <main>
+      <h1>This is a Dinastico.js</h1>
+    </main>
+  )
+}
+```
