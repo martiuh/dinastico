@@ -3,6 +3,7 @@
 - ~~`dinastico-link` tries to guess if the dynamic url is part of our routing strategy~~, **PENDING** otherwise just prefetch an `404.html`
 - ~~Build a file or folder for each route in our app (for faster first print)~~
 - Create a Wrapper React Component where to enable Redux or any *wrapping* required
+- Support for `react-helmet`
 
 - Development features:
   - ~~webpack-dev-middleware instead of webpack-dev-server~~
