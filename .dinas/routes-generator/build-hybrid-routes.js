@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
-import * as syncChunks from './.routes/sync-chunks'
-import * as fileRouter from './.routes/file-router'
+import * as syncChunks from '../routes/sync-chunks'
+import * as fileRouter from '../routes/file-router'
 
 // TODO: Make it asynchronous
 // Chunkname with path
@@ -120,8 +120,8 @@ const dinasticoRoutes = () => {
   })
 
   const currentDir = process.cwd()
-  fs.writeFileSync(path.join(currentDir, '.routes', 'routes.json'), JSON.stringify(fullRouter, null, '\t'))
-  fs.writeFileSync(path.join(currentDir, '.routes', 'dinastico-routes.json'), JSON.stringify(dinasticoRouter, null, '\t'))
+  fs.writeFileSync(path.join(__dirname, '../routes/routes.json'), JSON.stringify(fullRouter, null, '\t'))
+  fs.writeFileSync(path.join(__dirname, '../routes/dinastico-routes.json'), JSON.stringify(dinasticoRouter, null, '\t'))
 }
 
 export default dinasticoRoutes

@@ -12,12 +12,12 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, '../../public'),
     publicPath: '/',
     filename: '[name].js'
   },
   devServer: {
-    contentBase: path.join(__dirname, 'src'),
+    contentBase: path.join(__dirname, '../../src'),
     port: 3000,
     historyApiFallback: true
   },

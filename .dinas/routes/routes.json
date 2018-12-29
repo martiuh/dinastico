@@ -1,0 +1,10 @@
+{
+	"hello/": "site--pages-hello-js",
+	"/": "site--pages-index-js",
+	"items/": "site--pages-items-js",
+	"movies/": "site--pages-movies-js",
+	"movies/movieId/": "site--pages-movies-js",
+	"msg/": "site--pages-msg-js",
+	"msg/privacidad/": "site--pages-msg-js",
+	"msg/message/": "site--pages-msg-js"
+}

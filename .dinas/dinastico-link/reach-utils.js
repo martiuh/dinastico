@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-// cheers to Ryan Florence's @reach/router and his match algorithm
+// cheers to Ryan Florence's @reach/router and his pick algorithm
+// taken from: https://github.com/reach/router/blob/master/src/lib/utils.js
 
-// https://github.com/reach/router/blob/master/src/lib/utils.js
 // startsWith(string, search) - Check if `string` starts with `search`
 let startsWith = (string, search) => string.substr(0, search.length) === search
 

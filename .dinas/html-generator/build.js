@@ -4,15 +4,15 @@ import { ServerLocation, Router } from '@reach/router'
 
 import DefaultHtml from './DefaultHtml'
 import template from './template'
-import { jsMatch, cssMatch } from './utils'
-import * as syncChunks from '../.routes/sync-chunks'
+import { jsMatch, cssMatch } from '../utils'
+import * as syncChunks from '../routes/sync-chunks'
 /* eslint-disable import/no-unresolved */
-import dinasticoRoutes from '../.routes/dinastico-routes.json'
-import stats from '../public/stats.json'
-import fullRoutes from '../.routes/routes.json'
+import dinasticoRoutes from '../routes/dinastico-routes.json'
+import fullRoutes from '../routes/routes.json'
+import stats from '../../public/stats.json'
+/* eslint-enable import/no-unresolved */
 
 const dinasticoStats = stats.assetsByChunkName
-/* eslint-enable import/no-unresolved */
 
 // import dinasticoRoutes from './dinasticoRoutes'
 // 1. Get Pages

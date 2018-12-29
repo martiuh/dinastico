@@ -1,5 +1,5 @@
-import dinastico from '../package.json'
-
+import dinastico from '../../package.json'
+// Since this package will be inside node_modules, I'll send all the package.json data into this "chachesque" folder
 export default (string, { pages, js, css }) => {
   // The slash is added by estatico-assets-manifest.json
   const jsString = js.map(J => `<script src="${J}" type="text/javascript" async></script>`).join('\n')

@@ -1,3 +1,17 @@
+export default ({ css, js }) => (
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <title>Dinastico * HSG</title>
+      <meta generator='generator' content='Dinastico' />
+      {csStrings || null}
+    </head>
+    <div id='__dinastico'>
+      {app || null}
+    </div>
+    {jsString || null}
+  </html>
+)
 //
 // export default (string, { Pages, js, css }) => {
 //   // The slash is added by estatico-assets-manifest.json
