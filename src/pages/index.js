@@ -2,8 +2,8 @@ import React from 'react'
 import unoapi from 'unoapi'
 import Link from 'dinastico-link'
 
-import MovieCard from '../component/MovieCard'
-import Layout from '../component/Layout'
+import MovieCard from '../components/MovieCard'
+import Layout from '../components/Layout'
 import '../css/index.css'
 
 export default class extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router } from '@reach/router'
-import Layout from '../component/Layout'
+import Layout from '../components/Layout'
 
 function Item() {
   return <h1>Items.js</h1>

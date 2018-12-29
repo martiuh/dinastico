@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '../component/Layout'
-import GreetingAmongWorlds from '../component/GreetingAmongWorlds'
+import Layout from '../components/Layout'
+import GreetingAmongWorlds from '../components/GreetingAmongWorlds'
 
 export default class Hello extends React.Component {
   state = {

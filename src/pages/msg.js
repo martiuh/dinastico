@@ -4,8 +4,8 @@ import axios from 'axios'
 import Link from 'dinastico-link'
 
 import MyCustomMessage from '../subpages/MyCustomMessage'
-import CommentCard from '../component/CommentCard'
-import Layout from '../component/Layout'
+import CommentCard from '../components/CommentCard'
+import Layout from '../components/Layout'
 import '../css/msg.scss'
 
 class Msg extends React.Component {
