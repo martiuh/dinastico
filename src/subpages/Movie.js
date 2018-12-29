@@ -2,7 +2,7 @@ import React from 'react'
 import unoapi from 'unoapi'
 import Link from 'dinastico-link'
 
-import MovieCard from '../component/MovieCard'
+import MovieCard from '../components/MovieCard'
 
 export default class Movie extends React.Component {
   state = {
