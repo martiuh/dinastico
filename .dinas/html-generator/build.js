@@ -1,6 +1,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
+import Helmet from 'react-helmet'
 
 import DefaultHtml from './DefaultHtml'
 import template from './template'
@@ -102,5 +103,7 @@ export default function (locals) {
   )
 
   const appString = renderToString(<App />)
-  return template(appString, { pages, js: jsArr, css: cssArr })
+  const helmet = Helmet.renderStatic()
+  // return renderToString(<DefaultHtml js={jsArr} css={cssArr} app={appString} {...helmet} />)
+  return template(appString, { pages, js: jsArr, css: cssArr, helmet })
 }

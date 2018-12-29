@@ -1,6 +1,7 @@
 import React from 'react'
 import unoapi from 'unoapi'
 import Link from 'dinastico-link'
+import Helmet from 'react-helmet'
 
 import MovieCard from '../components/MovieCard'
 
@@ -50,6 +51,7 @@ export default class Movie extends React.Component {
 
     return (
       <main>
+        <Helmet title={movie.title ? movie.title.rendered : 'Movie'} />
         <Link to='/'>
           {'<---'} De vuela a inicio
         </Link>

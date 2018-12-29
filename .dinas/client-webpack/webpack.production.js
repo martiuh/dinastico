@@ -23,8 +23,7 @@ module.exports = (env, argv) => {
         cacheGroups: {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            filename: '[name]-[chunkhash].js'
+            priority: -10
           }
         }
       },

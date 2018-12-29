@@ -18,4 +18,5 @@
     - Build an automatic `AltoRouter` with each dynamic url
 
 **Road to 1.0**
+- Expose webpack.config to the client
 - Build the router considering `pages` there are directories with `.js` files.

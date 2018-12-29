@@ -1,15 +1,28 @@
-export default ({ css, js }) => (
+import React from 'react'
+
+export default ({ css, js, title, app }) => (
   <html>
     <head>
       <meta charset="utf-8" />
-      <title>Dinastico * HSG</title>
+      {title ? (
+        <title>{title.toString()}</title>
+      ) : (
+        <title>Dinastico * HSG</title>
+      )}
       <meta generator='generator' content='Dinastico' />
-      {csStrings || null}
+      {css || css.map(C => (
+        <link href={C} rel='stylesheet' />
+      ))}
     </head>
-    <div id='__dinastico'>
-      {app || null}
-    </div>
-    {jsString || null}
+    <div
+      id='__dinastico'
+      dangerouslySetInnerHTML={{
+        __html: app || ''
+      }}
+    />
+    {js || js.map(J => (
+      <script src={J} type='text-javascript' async></script>
+    ))}
   </html>
 )
 //
