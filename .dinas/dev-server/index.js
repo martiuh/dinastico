@@ -12,10 +12,10 @@ const jsMatch = require('../utils/jsMatch')
 const c = require('./socket-constants')
 const DevSocket = require('./DevSocketManager')
 const report = require('./report')
-const webpackConfig = require('../webpack/webpack.config')
+const webpackConfig = require('../client-webpack/webpack.config')
 const buildDinastico = require('../routes-generator/build-chunks')
 // check if pagesDir exists in src
-const pagesDir = path.resolve(__dirname, 'src', 'pages')
+const pagesDir = path.resolve(__dirname, '../../src/pages')
 const hasPages = fs.existsSync(pagesDir)
 if (!hasPages) {
   report.failure('make sure ./src/pages folder exists')
@@ -64,8 +64,6 @@ const Start = () => {
 
 const clientCompiler = webpack(clientConfig)
 const devMiddleware = webpackDevMiddleware(clientCompiler, {
-  logLevel: 'silent',
-  stats: false,
   publicPath
 })
 
@@ -79,4 +77,4 @@ app.use(hotMiddleware(clientCompiler, {
 }))
 
 app.use(publicPath, express.static(outputPath))
-app.use('/*', (req, res) => res.sendFile(path.resolve('./public/index.html')))
+app.use('/*', (req, res) => res.sendFile(path.resolve(__dirname, '../../public/index.html')))

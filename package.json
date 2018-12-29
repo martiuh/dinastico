@@ -75,7 +75,7 @@
   },
   "scripts": {
     "analyze:client": "yarn clean && yarn build:client --env ANALYZE",
-    "start": "yarn clean && yarn clean:chunks && node devServer.js",
+    "start": "yarn clean && yarn clean:chunks && node .dinas/dev-server",
     "clean": "rimraf public",
     "cz": "npx git-cz",
     "lint": "eslint --quiet src",
