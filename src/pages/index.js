@@ -1,9 +1,10 @@
 import React from 'react'
 import unoapi from 'unoapi'
 import Link from 'dinastico-link'
+import Helmet from 'react-helmet'
 
-import MovieCard from '../component/MovieCard'
-import Layout from '../component/Layout'
+import MovieCard from '../components/MovieCard'
+import Layout from '../components/Layout'
 import '../css/index.css'
 
 export default class extends React.Component {
@@ -25,6 +26,7 @@ export default class extends React.Component {
     return (
       <Layout>
         <div className='box'>
+          <Helmet title='Star Wars Rocks!!!' />
           <h1>Star Wars - Movies!!!</h1>
           {/* <MovieCard /> */}
           {movies.map(movie => {

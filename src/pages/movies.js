@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router, navigate } from '@reach/router'
 
-import Layout from '../component/Layout'
+import Layout from '../components/Layout'
 import Movie from '../subpages/Movie'
 
 class Movies extends React.Component {

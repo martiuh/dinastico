@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, Router } from '@reach/router'
 
-import syncChunks from '../.routes/sync-chunks'
-import fileRouter from '../.routes/file-router'
-import buildSyncRouter from './utils/buildSyncRouter'
+import syncChunks from '../routes/sync-chunks'
+import fileRouter from '../routes/file-router'
+import buildSyncRouter from '../utils/buildSyncRouter'
 
 const FourOFour = () => (
   <div>

@@ -14,6 +14,7 @@ const baseConfig = (env, argv, envConfig) => {
   const shared = sharedConfig(env)
   const config = {
     target: 'web',
+    context: path.join(__dirname, '../../'),
     module: {
       rules: [
         {

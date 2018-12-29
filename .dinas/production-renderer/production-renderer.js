@@ -4,13 +4,13 @@ import axios from 'axios'
 import { hydrate } from 'react-dom'
 import universal from 'react-universal-component'
 
-import asyncChunks from '../.routes/async-chunks'
+import asyncChunks from '../routes/async-chunks'
 /* eslint-disable import/no-unresolved*/
-import dinasticoRoutes from '../.routes/dinastico-routes.json'
-import fullRoutes from '../.routes/routes.json'
+import dinasticoRoutes from '../routes/dinastico-routes.json'
+import fullRoutes from '../routes/routes.json'
 /* eslint-enable import/no-unresolved*/
-import fileRouter from '../.routes/file-router'
-import { pick } from './dinastico-link/utils'
+import fileRouter from '../routes/file-router'
+import { pick } from '../dinastico-link/reach-utils'
 
 let { pathname } = window.location
 const dinasticoRoot = document.getElementById('__dinastico')

@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from '@reach/router'
-
-import CommentCard from '../component/CommentCard'
+import Helmet from 'react-helmet'
+import CommentCard from '../components/CommentCard'
 
 import './MyCustomMessage.scss'
 
@@ -44,6 +44,7 @@ export default class MyCustomMessage extends React.Component {
 
     return (
       <main className='message-box'>
+        <Helmet title={comment.email ? comment.email : 'Mensaje de'} />
         <Link to='/msg'>
           Atrás
           {'<--'}

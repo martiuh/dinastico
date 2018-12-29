@@ -1,22 +1,32 @@
 // Only one entry point
 const path = require('path')
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
 const webpack = require('webpack')
-const WriteFilePlugin = require('write-file-webpack-plugin')
 const webpackMerge = require('webpack-merge')
-const sharedConfig = require('./webpack.shared')
+
 const dinasticoShared = require('./dinastico.shared')
+const routes = require('../routes/routes.json')
+const sharedConfig = require('../client-webpack/webpack.shared')
+
+const paths = Object.keys(routes)
 
 module.exports = function dinasticoWebpack(env, argv) {
   const config = {
-    target: 'node',
     mode: 'production',
-    entry: path.resolve(__dirname, 'dinastico.routes.js'),
+    entry: path.resolve(__dirname, 'build.js'),
     output: {
-      filename: 'buildRoutes.js',
-      path: path.join(__dirname, '.routes')
+      filename: '.dinastico__hidden.js',
+      path: path.join(__dirname, '../../public'),
+      libraryTarget: 'umd',
+      globalObject: 'this'
     },
     plugins: [
-      new WriteFilePlugin(),
+      new StaticSiteGeneratorPlugin({
+        paths,
+        locals: {
+          routes
+        }
+      }),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
       }),

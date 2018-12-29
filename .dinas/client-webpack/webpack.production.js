@@ -7,10 +7,10 @@ module.exports = (env, argv) => {
   const clientProduction = {
     devtool: 'source-map',
     entry: {
-      bundle: path.join(__dirname, 'src', 'production-renderer')
+      bundle: path.join(__dirname, '../production-renderer/production-renderer.js')
     },
     output: {
-      path: path.resolve(__dirname, 'public'),
+      path: path.resolve(__dirname, '../../public'),
       publicPath: '/',
       filename: '[name]-[chunkhash].js'
     },
@@ -23,8 +23,7 @@ module.exports = (env, argv) => {
         cacheGroups: {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            filename: '[name]-[chunkhash].js'
+            priority: -10
           }
         }
       },

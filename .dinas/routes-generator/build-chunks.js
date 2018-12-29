@@ -3,11 +3,11 @@ const fs = require('fs')
 const path = require('path')
 const slash = require('slash')
 const kebabCase = require('lodash/kebabCase')
-const jsMatch = require('./src/utils/jsMatch')
+const jsMatch = require('../utils/jsMatch')
 
 const buildDinastico = () => {
   const currentDir = __dirname
-  const pagePath = path.join(currentDir, 'src', 'pages')
+  const pagePath = path.join(currentDir, '../../src/pages')
   let importChunks = ''
   let requireChunks = ''
   let fileRouter = ''
@@ -34,9 +34,9 @@ const buildDinastico = () => {
   `
   fileRouter = `module.exports = {${fileRouter}\n}`
 
-  fs.writeFileSync(`${currentDir}/.routes/async-chunks.js`, importChunks)
-  fs.writeFileSync(`${currentDir}/.routes/sync-chunks.js`, requireChunks)
-  fs.writeFileSync(`${currentDir}/.routes/file-router.js`, fileRouter)
+  fs.writeFileSync(`${currentDir}/../routes/async-chunks.js`, importChunks)
+  fs.writeFileSync(`${currentDir}/../routes/sync-chunks.js`, requireChunks)
+  fs.writeFileSync(`${currentDir}/../routes/file-router.js`, fileRouter)
   return files
 }
 

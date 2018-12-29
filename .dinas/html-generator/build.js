@@ -1,18 +1,19 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
+import Helmet from 'react-helmet'
 
 import DefaultHtml from './DefaultHtml'
 import template from './template'
-import { jsMatch, cssMatch } from './utils'
-import * as syncChunks from '../.routes/sync-chunks'
+import { jsMatch, cssMatch } from '../utils'
+import * as syncChunks from '../routes/sync-chunks'
 /* eslint-disable import/no-unresolved */
-import dinasticoRoutes from '../.routes/dinastico-routes.json'
-import stats from '../public/stats.json'
-import fullRoutes from '../.routes/routes.json'
+import dinasticoRoutes from '../routes/dinastico-routes.json'
+import fullRoutes from '../routes/routes.json'
+import stats from '../../public/stats.json'
+/* eslint-enable import/no-unresolved */
 
 const dinasticoStats = stats.assetsByChunkName
-/* eslint-enable import/no-unresolved */
 
 // import dinasticoRoutes from './dinasticoRoutes'
 // 1. Get Pages
@@ -102,5 +103,7 @@ export default function (locals) {
   )
 
   const appString = renderToString(<App />)
-  return template(appString, { pages, js: jsArr, css: cssArr })
+  const helmet = Helmet.renderStatic()
+  // return renderToString(<DefaultHtml js={jsArr} css={cssArr} app={appString} {...helmet} />)
+  return template(appString, { pages, js: jsArr, css: cssArr, helmet })
 }

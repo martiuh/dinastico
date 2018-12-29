@@ -16,8 +16,8 @@ module.exports = function webpackShared(env, argv) {
       extensions: ['.js', '.css', '.scss', '.sass', '.jsx'],
       alias: {
         'react-dom': '@hot-loader/react-dom',
-        'dinastico-link': path.resolve(__dirname, 'src/dinastico-link'),
-        unoapi: path.resolve(__dirname, 'src/unoapi.js')
+        'dinastico-link': path.resolve(__dirname, '../dinastico-link'),
+        unoapi: path.resolve(__dirname, '../../src/unoapi.js')
       }
     }
   }

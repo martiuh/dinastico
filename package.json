@@ -1,6 +1,6 @@
 {
   "name": "dinastico",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Making a static React App",
   "main": "index.js",
   "author": "Martiuh González <martiuh@gmail.com>",
@@ -70,30 +70,27 @@
     "node-sass": "^4.10.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-helmet": "^5.2.0",
     "sass-loader": "^7.1.0",
     "socket.io": "^2.2.0"
   },
   "scripts": {
     "analyze:client": "yarn clean && yarn build:client --env ANALYZE",
-    "start": "yarn clean && yarn clean:chunks && node devServer.js",
-    "prod": "yarn build && yarn serve",
+    "start": "yarn clean && yarn clean:chunks && node .dinas/dev-server",
     "clean": "rimraf public",
     "cz": "npx git-cz",
     "lint": "eslint --quiet src",
-    "clean:chunks": "rimraf .routes && mkdir .routes",
+    "clean:chunks": "rimraf .dinas/routes && mkdir .dinas/routes",
     "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:dinastico",
-    "build:chunks": "yarn clean:chunks && node dinastico.build-chunks.js",
-    "build:routes": "webpack --config dinastico.routes.webpack.js --mode production && node .routes/buildRoutes",
-    "build:client": "webpack --mode production --colors",
-    "build:dinastico": "webpack --mode production --config dinastico.webpack.js",
-    "serve": "cross-env NODE_ENV=production node server.js",
-    "heroku-postbuild": "yarn build",
-    "heroku-start": "node server.js",
-    "test": "yarn lint"
+    "build:chunks": "yarn clean:chunks && node .dinas/routes-generator/build-chunks.js",
+    "build:routes": "webpack --config .dinas/routes-generator/routes.webpack.js --mode production && node .dinas/routes/buildRoutes",
+    "build:client": "webpack --mode production --config .dinas/client-webpack/webpack.config.js --colors",
+    "build:dinastico": "webpack --mode production --config .dinas/html-generator/dinastico.webpack.js",
+    "pre:push": "yarn lint"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn test"
+      "pre-push": "yarn pre:push"
     }
   }
 }

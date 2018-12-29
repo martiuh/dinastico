@@ -2,10 +2,11 @@ import React from 'react'
 import { Router } from '@reach/router'
 import axios from 'axios'
 import Link from 'dinastico-link'
+import Helmet from 'react-helmet'
 
 import MyCustomMessage from '../subpages/MyCustomMessage'
-import CommentCard from '../component/CommentCard'
-import Layout from '../component/Layout'
+import CommentCard from '../components/CommentCard'
+import Layout from '../components/Layout'
 import '../css/msg.scss'
 
 class Msg extends React.Component {
@@ -25,6 +26,7 @@ class Msg extends React.Component {
     const { comments, fetched } = this.state
     return (
       <main className='msg-box'>
+        <Helmet title='Mensajes' />
         <h1>Mensajes</h1>
         <Link to='/msg/privacidad'>Ver privacidad</Link>
         {comments.map(C => {
