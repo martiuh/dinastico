@@ -1,6 +1,6 @@
 {
   "name": "dinastico",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Making a static React App",
   "main": "index.js",
   "author": "Martiuh González <martiuh@gmail.com>",
@@ -85,11 +85,11 @@
     "build:routes": "webpack --config .dinas/routes-generator/routes.webpack.js --mode production && node .dinas/routes/buildRoutes",
     "build:client": "webpack --mode production --config .dinas/client-webpack/webpack.config.js --colors",
     "build:dinastico": "webpack --mode production --config .dinas/html-generator/dinastico.webpack.js",
-    "test": "yarn lint"
+    "pre:push": "yarn lint"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn test"
+      "pre-push": "yarn pre:push"
     }
   }
 }
