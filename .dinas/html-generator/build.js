@@ -2,9 +2,11 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { ServerLocation, Router } from '@reach/router'
 import Helmet from 'react-helmet'
+import nunjucks from 'nunjucks'
+import path from 'path'
 
 import DefaultHtml from './DefaultHtml'
-import template from './template'
+// import template from './template'
 import { jsMatch, cssMatch } from '../utils'
 import * as syncChunks from '../routes/sync-chunks'
 /* eslint-disable import/no-unresolved */
@@ -20,7 +22,7 @@ const dinasticoStats = stats.assetsByChunkName
 // 2. Make routes according to filename
 
 export default function (locals) {
-  const { routes } = locals
+  const { routes, template } = locals
   const chunkName = fullRoutes[locals.path] // The name of the component
   const chunkFiles = dinasticoStats[chunkName]
 
@@ -104,6 +106,20 @@ export default function (locals) {
 
   const appString = renderToString(<App />)
   const helmet = Helmet.renderStatic()
+  const jsString = jsArr.map(J => `<script src="${J}" type="text/javascript" async></script>`).join('\n')
+  const cssString = cssArr.map(C => `<link href="${C}" rel="stylesheet" />`).join('\n')
+  const props = {
+    js: jsString,
+    css: cssString,
+    app: appString,
+    title: helmet.title.toString()
+  }
+  const nunjucksInstance = nunjucks.configure({ 
+    autoescape: false
+  })
+  return nunjucksInstance.renderString(template.toString(), props)
+
+  // return nunjucks.renderString('Hello {{ username }}', { username: 'James' });
   // return renderToString(<DefaultHtml js={jsArr} css={cssArr} app={appString} {...helmet} />)
-  return template(appString, { pages, js: jsArr, css: cssArr, helmet })
+  // return template(appString, { pages, js: jsString, css: cssString, helmet })
 }
