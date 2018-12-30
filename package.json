@@ -80,7 +80,7 @@
     "start": "yarn clean && yarn clean:chunks && node .dinas/dev-server",
     "clean": "rimraf public",
     "cz": "npx git-cz",
-    "lint": "eslint --quiet src",
+    "lint": "eslint --quiet --fix src",
     "clean:chunks": "rimraf .dinas/routes",
     "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:dinastico",
     "build:chunks": "yarn clean:chunks && node .dinas/routes-generator/build-chunks.js",

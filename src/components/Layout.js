@@ -10,7 +10,7 @@ export default ({ children }) => (
   <header>
     <nav className='navbar'>
       <Helmet>
-        <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet"></link>
+        <link href='https://fonts.googleapis.com/css?family=Staatliches' rel='stylesheet' />
       </Helmet>
       <Link to='/'>Home</Link>
       <Link to='/hello'>Hello</Link>
