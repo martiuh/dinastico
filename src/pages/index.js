@@ -26,7 +26,13 @@ export default class extends React.Component {
     return (
       <Layout>
         <div className='box'>
-          <Helmet title='Star Wars Rocks!!!' />
+          <Helmet
+            title='Star Wars Rocks!!!'
+            meta={[{
+              name: 'title',
+              description: 'Star Wars Rocks!!!'
+            }]}
+          />
           <h1>Star Wars - Movies!!!</h1>
           {/* <MovieCard /> */}
           {movies.map(movie => {

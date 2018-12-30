@@ -105,15 +105,34 @@ export default function (locals) {
   )
 
   const appString = renderToString(<App />)
-  const helmet = Helmet.renderStatic()
+  const {
+    title,
+    bodyAttributes,
+    htmlAttributes,
+    link,
+    meta,
+    noscript,
+    script,
+    style
+  } = Helmet.renderStatic()
+
   const jsString = jsArr.map(J => `<script src="${J}" type="text/javascript" async></script>`).join('\n')
   const cssString = cssArr.map(C => `<link href="${C}" rel="stylesheet" />`).join('\n')
   const props = {
     js: jsString,
     css: cssString,
     app: appString,
-    title: helmet.title.toString()
+    title: title.toString(),
+    htmlAttributes: htmlAttributes.toString(),
+    link: link.toString(),
+    meta: meta.toString(),
+    noscript: noscript.toString(),
+    script: script.toString(),
+    style: style.toString(),
+    bodyAttributes: bodyAttributes.toString(),
+
   }
+
   const nunjucksInstance = nunjucks.configure({ 
     autoescape: false
   })

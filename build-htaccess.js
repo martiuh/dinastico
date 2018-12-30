@@ -12,5 +12,3 @@ onlyDynamic.forEach(({ route, directory }) => {
     ${route} ${directory}
   `
 })
-
-console.log(htaccess)

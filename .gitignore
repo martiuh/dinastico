@@ -4,5 +4,6 @@ public
 yarn-error.log
 public
 *.zip
+.dinas/routes/**
 
 ### Ignore things
