@@ -1,7 +1,7 @@
 {
   "name": "dinastico",
   "version": "0.5.1",
-  "description": "Making a static React App",
+  "description": "Hybrid static maker",
   "main": "index.js",
   "author": "Martiuh González <martiuh@gmail.com>",
   "license": "MIT",

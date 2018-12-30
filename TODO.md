@@ -2,8 +2,8 @@
 - ~~Programatically build a **production** Router from the src/pages folder~~
 - ~~`dinastico-link` tries to guess if the dynamic url is part of our routing strategy~~, **PENDING** otherwise just prefetch an `404.html`
 - ~~Build a file or folder for each route in our app (for faster first print)~~
-- Create a Wrapper React Component where to enable Redux or any *wrapping* required
-- Support for `react-helmet`
+- Create a Wrapper React Component where to enable redux, context, or any *wrapping* required
+- ~~Support for `react-helmet`~~
 
 - Development features:
   - ~~webpack-dev-middleware instead of webpack-dev-server~~
@@ -17,6 +17,6 @@
   - php
     - Build an automatic `AltoRouter` with each dynamic url
 
-**Road to 1.0**
+**Road to 0.6.0**
 - Expose webpack.config to the client
 - Build the router considering `pages` there are directories with `.js` files.
