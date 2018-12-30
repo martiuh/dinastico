@@ -5,6 +5,7 @@ const slash = require('slash')
 const kebabCase = require('lodash/kebabCase')
 const jsMatch = require('../utils/jsMatch')
 
+fs.mkdirSync(path.join(__dirname, '../routes'))
 const buildDinastico = () => {
   const currentDir = __dirname
   const pagePath = path.join(currentDir, '../../src/pages')

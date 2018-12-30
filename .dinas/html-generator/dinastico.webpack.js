@@ -2,6 +2,7 @@
 const path = require('path')
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
 const webpack = require('webpack')
+const fs = require('fs')
 const webpackMerge = require('webpack-merge')
 
 const dinasticoShared = require('./dinastico.shared')
@@ -24,7 +25,8 @@ module.exports = function dinasticoWebpack(env, argv) {
       new StaticSiteGeneratorPlugin({
         paths,
         locals: {
-          routes
+          routes,
+          template: fs.readFileSync(path.join(__dirname, '../default-html/index.html'))
         }
       }),
       new webpack.optimize.LimitChunkCountPlugin({

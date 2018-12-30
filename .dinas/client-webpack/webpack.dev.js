@@ -2,7 +2,15 @@ const path = require('path')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const rimraf = require('rimraf')
+const nunjucks = require('nunjucks')
+const fs = require('fs')
 
+const devTemplatePath = path.join(__dirname, 'dev-template.html')
+
+rimraf.sync(devTemplatePath)
+const template = nunjucks.render(path.resolve(__dirname, '../default-html/index.html'))
+fs.writeFileSync(devTemplatePath, template)
 module.exports = {
   entry: {
     bundle: [
