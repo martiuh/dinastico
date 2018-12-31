@@ -5,8 +5,6 @@ import Helmet from 'react-helmet'
 import nunjucks from 'nunjucks'
 import path from 'path'
 
-import DefaultHtml from './DefaultHtml'
-// import template from './template'
 import { jsMatch, cssMatch } from '../utils'
 import * as syncChunks from '../routes/sync-chunks'
 /* eslint-disable import/no-unresolved */
@@ -137,8 +135,4 @@ export default function (locals) {
     autoescape: false
   })
   return nunjucksInstance.renderString(template.toString(), props)
-
-  // return nunjucks.renderString('Hello {{ username }}', { username: 'James' });
-  // return renderToString(<DefaultHtml js={jsArr} css={cssArr} app={appString} {...helmet} />)
-  // return template(appString, { pages, js: jsString, css: cssString, helmet })
 }

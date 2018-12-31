@@ -9,12 +9,11 @@ const devConfig = require('./webpack.dev')
 const wpProduction = require('./webpack.production')
 
 
-const baseConfig = (env, argv, envConfig) => {
+const baseConfig = (env, argv, envWebpack) => {
   const isDev = argv.mode === 'development'
-  const shared = sharedConfig(env)
+  const shared = sharedConfig(env, argv)
   const config = {
     target: 'web',
-    context: path.join(__dirname, '../../'),
     module: {
       rules: [
         {
@@ -34,7 +33,6 @@ const baseConfig = (env, argv, envConfig) => {
         cssModules: false
       }),
       new webpack.DefinePlugin({
-        IS_SERVER: false,
         'process.env': {
           NODE_ENV: JSON.stringify(argv.mode || 'development')
         }
@@ -42,7 +40,7 @@ const baseConfig = (env, argv, envConfig) => {
     ]
   }
 
-  return webpackMerge.smart(envConfig, config, shared)
+  return webpackMerge.smart(envWebpack, config, shared)
 }
 
 module.exports = function webpackConfig(env, argv) {

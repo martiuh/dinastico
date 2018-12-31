@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 const sharedConfig = require('../client-webpack/webpack.shared')
-const dinasticoShared = require('../html-generator/dinastico.shared')
+const dinasticoShared = require('../html-generator/html.shared')
 
 module.exports = function dinasticoWebpack(env, argv) {
   const config = {

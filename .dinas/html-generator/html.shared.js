@@ -1,3 +1,6 @@
+/*
+  This webpack configuration is shared between html-generator and routes-generator
+ */
 module.exports = {
   module: {
     rules: [

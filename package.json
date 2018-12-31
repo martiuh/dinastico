@@ -1,7 +1,7 @@
 {
   "name": "dinastico",
   "version": "0.5.1",
-  "description": "Hybrid static maker",
+  "description": "Hybrid static site generator based on react",
   "main": "index.js",
   "author": "Martiuh González <martiuh@gmail.com>",
   "license": "MIT",
@@ -84,14 +84,14 @@
     "clean:chunks": "rimraf .dinas/routes",
     "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:dinastico",
     "build:chunks": "yarn clean:chunks && node .dinas/routes-generator/build-chunks.js",
-    "build:routes": "webpack --config .dinas/routes-generator/routes.webpack.js --mode production && node .dinas/routes/buildRoutes",
-    "build:client": "webpack --mode production --config .dinas/client-webpack/webpack.config.js --colors",
-    "build:dinastico": "webpack --mode production --config .dinas/html-generator/dinastico.webpack.js",
-    "pre:push": "yarn lint"
+    "build:routes": "webpack --mode production --env routing --config .dinas/routes-generator/routes.webpack.js && node .dinas/routes/buildRoutes",
+    "build:client": "webpack --mode production --env client --config .dinas/client-webpack/client.webpack.js --colors",
+    "build:dinastico": "webpack --mode production --env static --config .dinas/html-generator/html.webpack.js",
+    "test": "yarn lint"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn pre:push"
+      "pre-commit": "yarn test && git push"
     }
   }
 }
