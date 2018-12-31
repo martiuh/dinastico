@@ -3,7 +3,7 @@
   "version": "0.5.1",
   "description": "Hybrid static site generator based on react",
   "main": "index.js",
-  "author": "Martiuh González <martiuh@gmail.com>",
+  "author": "Tona González <martiuh@gmail.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
