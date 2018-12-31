@@ -12,7 +12,7 @@ const jsMatch = require('../utils/jsMatch')
 const c = require('./socket-constants')
 const DevSocket = require('./DevSocketManager')
 const report = require('./report')
-const webpackConfig = require('../client-webpack/webpack.config')
+const webpackConfig = require('../client-webpack/client.webpack')
 const buildDinastico = require('../routes-generator/build-chunks')
 // check if pagesDir exists in src
 const pagesDir = path.resolve(__dirname, '../../src/pages')
