@@ -79,7 +79,7 @@
     "analyze:client": "yarn clean && yarn build:client --env ANALYZE",
     "start": "yarn clean && yarn clean:chunks && node .dinas/dev-server",
     "clean": "rimraf public",
-    "cz": "npx git-cz",
+    "cz": "npx git-cz && git push",
     "lint": "eslint --quiet --fix src",
     "clean:chunks": "rimraf .dinas/routes",
     "build": "yarn clean && yarn build:chunks && yarn build:routes && yarn build:client && yarn build:dinastico",
@@ -91,7 +91,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test && git push"
+      "pre-commit": "yarn test"
     }
   }
 }
