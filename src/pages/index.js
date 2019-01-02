@@ -31,7 +31,7 @@ export default class extends React.Component {
       <Layout>
         <div className='box'>
           <Helmet
-            title='Dinapedia'
+            title='Animepedia'
             meta={[{
               name: 'title',
               description: 'Dinapedia!!!'
