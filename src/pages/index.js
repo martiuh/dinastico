@@ -1,55 +1,53 @@
 import React from 'react'
-import unoapi from 'unoapi'
 import Link from 'dinastico-link'
 import Helmet from 'react-helmet'
+import animeapi from 'animeapi'
 
-import MovieCard from '../components/MovieCard'
+import AnimeCard from '../components/AnimeCard'
 import Layout from '../components/Layout'
-import '../css/index.css'
+import '../css/index.scss'
 
 export default class extends React.Component {
   state = {
-    movies: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    recommendations: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    focus: 1
   }
 
   componentDidMount() {
-    this.getMovies() //
+    this.getRecommendations() //
   }
 
-  getMovies = () => {
-    unoapi.get('/movies')
-      .then(({ data }) => this.setState({ movies: data }))
+  getRecommendations = () => {
+    animeapi.get('/anime/1/recommendations')
+      .then(({ data }) => this.setState({
+        recommendations: data.recommendations
+      }))
   }
 
   render() {
-    const { movies } = this.state
+    const { recommendations, focus } = this.state
+    const focusedRecommendations = recommendations.slice(0, 10 * focus)
     return (
       <Layout>
         <div className='box'>
           <Helmet
-            title='Star Wars Rocks!!!'
+            title='Dinapedia'
             meta={[{
               name: 'title',
-              description: 'Star Wars Rocks!!!'
+              description: 'Dinapedia!!!'
             }]}
           />
-          <h1>Star Wars - Movies!!!</h1>
-          {/* <MovieCard /> */}
-          {movies.map(movie => {
-            if (typeof movie === 'number') {
-              return <MovieCard key={movie} />
-            }
-            return (
-              <React.Fragment key={movie.id}>
-                <MovieCard
-                  title={movie.title}
-                  images={movie.acf.main_image.sizes}
-                  id={movie.id}
-                />
-                <Link to={`/movies/${movie.id}`}>Entrar</Link>
-              </React.Fragment>
-            )
-          })}
+          <h1>Cool Anime!!!</h1>
+          <div className='recommendations'>
+            {focusedRecommendations.map(anime => {
+              if (typeof anime === 'number') {
+                return <AnimeCard key={anime} />
+              }
+              return (
+                <AnimeCard key={anime.mal_id} {...anime} />
+              )
+            })}
+          </div>
         </div>
       </Layout>
     )

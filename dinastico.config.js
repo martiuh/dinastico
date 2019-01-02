@@ -4,10 +4,16 @@
 */
 const path = require('path')
 
+/*
+  env could be
+  `routing`
+  `client`: the client app
+  `static`: the static site, here you can't play with javascript
+*/
 exports.webpackConfig = (env, argv) => ({
   resolve: {
     alias: {
-      unoapi: path.resolve(__dirname, './src/unoapi.js')
+      animeapi: path.resolve(__dirname, './src/animeapi.js')
     }
   }
 })

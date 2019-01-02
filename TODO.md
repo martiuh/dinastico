@@ -22,3 +22,4 @@
 - ~~Expose webpack.config to the client~~
 - Build the router considering `pages` directory has recursively folders with `.js` files.
 - `dinastico-link` prefetches on keyPress
+- detect when component changes class to function or viceversa

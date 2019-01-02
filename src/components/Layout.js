@@ -12,10 +12,7 @@ export default ({ children }) => (
       <Helmet>
         <link href='https://fonts.googleapis.com/css?family=Staatliches' rel='stylesheet' />
       </Helmet>
-      <Link to='/'>Home</Link>
-      <Link to='/hello'>Hello</Link>
-      <Link to='/msg'>Msg</Link>
-      <Link to='/items'>Items</Link>
+      <Link to='/'>Dinapedia</Link>
     </nav>
     {children}
   </header>

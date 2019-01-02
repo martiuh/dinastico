@@ -17,7 +17,7 @@ module.exports = {
     'import/resolver': {
       alias: [
         ['dinastico-link', './.dinas/dinastico-link/index.js'],
-        ['unoapi', './src/unoapi']
+        ['animeapi', './src/animeapi']
       ],
       node: {
         extensions: ['.js', '.json']

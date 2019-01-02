@@ -1,0 +1,14 @@
+@mixin same-margin($width) {
+  margin: 0 $width 0 $width;
+}
+
+.recommendations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  div {
+    @include same-margin(5vw);
+  }
+}
