@@ -22,7 +22,8 @@ module.exports = function webpackShared(env, argv) {
       rules: [
         {
           test: /\.jsx?$/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          exclude: /node_modules/
         }
       ]
       // No .css here please
